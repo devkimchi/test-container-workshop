@@ -4,6 +4,7 @@ var apiapp = builder.AddProject<Projects.eShopLite_ApiApp>("apiapp");
 
 builder.AddProject<Projects.eShopLite_WebApp>("webapp")
        .WithExternalHttpEndpoints()
-       .WithReference(apiapp);
+       .WithReference(apiapp)
+       .WaitFor(apiapp);
 
 builder.Build().Run();
