@@ -8,11 +8,16 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsAspireHost>true</IsAspireHost>
-    <UserSecretsId>630b0d11-6d3d-48c7-a8a4-fd0a60dc3dae</UserSecretsId>
+    <UserSecretsId>6361d59d-44b3-445e-bc24-0d24fe65bcb5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eShopLite.WebApp\eShopLite.WebApp.csproj" />
+    <ProjectReference Include="..\eShopLite.ApiApp\eShopLite.ApiApp.csproj" />
   </ItemGroup>
 
 </Project>
