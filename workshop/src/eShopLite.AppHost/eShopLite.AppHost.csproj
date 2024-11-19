@@ -18,7 +18,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\eShopLite.WebApp\eShopLite.WebApp.csproj" />
-    <ProjectReference Include="..\eShopLite.ApiApp\eShopLite.ApiApp.csproj" />
+    <ProjectReference Include="..\eShopLite.ProductApi\eShopLite.ProductApi.csproj" />
+    <ProjectReference Include="..\eShopLite.WeatherApi\eShopLite.WeatherApi.csproj" />
   </ItemGroup>
 
 </Project>

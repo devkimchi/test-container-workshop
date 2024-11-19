@@ -6,10 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
     <AspireVersion>9.0.0</AspireVersion>
+    <EntityFrameworkCoreVersion>9.*</EntityFrameworkCoreVersion>
     <MicrosoftAspNetCoreVersion>9.*</MicrosoftAspNetCoreVersion>
     <MicrosoftExtensionsVersion>9.*</MicrosoftExtensionsVersion>
-    <!-- <EntityFrameworkVersion>8.*</EntityFrameworkVersion>
-    <VisualStudioWebCodeGenerationVersion>8.*</VisualStudioWebCodeGenerationVersion> -->
     <OpenTelemetryVersion>1.*</OpenTelemetryVersion>
   </PropertyGroup>
 </Project>

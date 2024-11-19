@@ -1,10 +1,14 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiapp = builder.AddProject<Projects.eShopLite_ApiApp>("apiapp");
+var productapi = builder.AddProject<Projects.eShopLite_ProductApi>("productapi");
+
+var weatherapi = builder.AddProject<Projects.eShopLite_WeatherApi>("weatherapi");
 
 builder.AddProject<Projects.eShopLite_WebApp>("webapp")
        .WithExternalHttpEndpoints()
-       .WithReference(apiapp)
-       .WaitFor(apiapp);
+       .WithReference(productapi)
+       .WithReference(weatherapi)
+       .WaitFor(productapi)
+       .WaitFor(weatherapi);
 
 builder.Build().Run();

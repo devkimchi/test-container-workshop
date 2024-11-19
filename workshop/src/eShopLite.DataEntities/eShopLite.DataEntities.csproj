@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>eShopLite.DataEntities</AssemblyName>
+    <RootNamespace>eShopLite.DataEntities</RootNamespace>
+  </PropertyGroup>
+
+</Project>
