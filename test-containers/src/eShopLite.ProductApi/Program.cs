@@ -6,9 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add service defaults & Aspire client integrations.
-builder.AddServiceDefaults();
-
 // Add services to the container.
 builder.Services.AddProblemDetails();
 
@@ -42,7 +39,5 @@ app.UseHttpsRedirection();
 app.MapProductEndpoints();
 
 app.CreateDbIfNotExists();
-
-app.MapDefaultEndpoints();
 
 app.Run();

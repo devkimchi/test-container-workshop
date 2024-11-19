@@ -9,8 +9,4 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="$(MicrosoftAspNetCoreVersion)" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\eShopLite.ServiceDefaults\eShopLite.ServiceDefaults.csproj" />
-  </ItemGroup>
-
 </Project>

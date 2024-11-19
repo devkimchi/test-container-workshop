@@ -2,9 +2,6 @@ using eShopLite.WeatherApi.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add service defaults & Aspire client integrations.
-builder.AddServiceDefaults();
-
 // Add services to the container.
 builder.Services.AddProblemDetails();
 
@@ -30,7 +27,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapWeatherEndpoints();
-
-app.MapDefaultEndpoints();
 
 app.Run();
