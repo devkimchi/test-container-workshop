@@ -30,6 +30,9 @@ indent_size = 2
 [*.{yaml,yml}]
 indent_size = 2
 
+[*.{sh}]
+end_of_line = lf
+
 # C# files
 [*.cs]
 
