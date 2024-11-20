@@ -1,7 +1,7 @@
 #!/bin/bash
 # Kill all processes listening on the specified ports
 
-ports=(5000 5050 5051 7000 7070 7071)
+ports=(3000 3030 3031 5000 5050 5051 7000 7070 7071)
 
 echo "Killing processes listening on ports: ${ports[@]}"
 
