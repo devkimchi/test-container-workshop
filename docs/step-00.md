@@ -1,15 +1,214 @@
 # STEP 00: 개발 환경 설정
 
-워크샵을 진행하기 위한 문서를 제공합니다.
+이 단계에서는 워크샵 진행을 위해 필요한 개발 환경을 설정합니다.
 
-- 기본적으로 이 문서만 따라해도 워크샵을 혼자서 처음부터 끝까지 진행할 수 있을 정도로 적어주세요.
-- 윈도우즈, 맥, 리눅스 등 다양한 환경에서 동일한 개발 경험을 제공할 수 있도록 작성해주세요.
-  - 예를 들어 터미널 명령어를 사용하는 부분이 있다면 윈도우즈에서는 PowerShell을, 맥/리눅스에서는 bash/zsh를 사용할 수 있도록 안내해 주세요.
-  - 키보드 단축키는 윈도우용과 맥용이 다를 수 있으므로 이 점도 고려해 주세요.
-- 워크샵을 여러 단계로 진행한다면 각 단계별로 문서를 나눠주세요.
-  - 단계별로 명확한 목표를 제시해 주세요.
-  - 각 단계가 끝난 후에는 결과를 확인할 수 있는 방법을 제시해 주세요. 단계별 결과물을 확인할 수 있는 코드나 명령어를 제공해 주세요.
+## 사전 준비 사항
 
-아래는 예시로 제공하는 워크샵 리포지토리입니다.
+- [.NET SDK 9](https://dotnet.microsoft.com/download/dotnet/9.0) 설치
+- [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell) 설치
+- [git CLI](https://git-scm.com/downloads) 설치
+- [GitHub CLI](https://cli.github.com/) 설치
+- [Docker Desktop](https://docs.docker.com/get-started/introduction/get-docker-desktop/) 설치
+- [Visual Studio Code](https://code.visualstudio.com/) 설치
 
-- [Aspire App Dev in a Day](https://github.com/Azure-Samples/aspire-app-dev-in-a-day-ko)
+## .NET SDK 설치 확인
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 .NET SDK를 설치했는지 확인합니다.
+
+    ```bash
+    # Bash/Zsh
+    which dotnet
+    ```
+
+    ```bash
+    # PowerShell
+    Get-Command dotnet
+    ```
+
+   만약 설치하지 않았다면 [.NET SDK 설치 페이지](https://dotnet.microsoft.com/download/dotnet/9.0)에서 최신 버전을 다운로드 받아 설치합니다.
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 설치한 .NET SDK 버전을 확인합니다.
+
+    ```bash
+    dotnet --list-sdks
+    ```
+
+   `9.0.100` 이상의 버전이 보여야 합니다. 없을 경우 [.NET SDK 설치 페이지](https://dotnet.microsoft.com/download/dotnet/9.0)에서 최신 버전을 다운로드 받아 설치합니다.
+
+## PowerShell 설치 확인
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 PowerShell을 설치했는지 확인합니다.
+
+    ```bash
+    # Bash/Zsh
+    which pwsh
+    ```
+
+    ```bash
+    # PowerShell
+    Get-Command pwsh
+    ```
+
+   만약 설치하지 않았다면 [PowerShell 설치 페이지](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)에서 최신 버전을 다운로드 받아 설치합니다.
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 설치한 PowerShell 버전을 확인합니다.
+
+    ```bash
+    pwsh --version
+    ```
+
+   `7.4.0` 이상의 버전이 보여야 합니다. 없을 경우 [PowerShell 설치 페이지](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)에서 최신 버전을 다운로드 받아 설치합니다.
+
+## git CLI 설치 확인
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 git CLI를 설치했는지 확인합니다.
+
+    ```bash
+    # Bash/Zsh
+    which git
+    ```
+
+    ```bash
+    # PowerShell
+    Get-Command git
+    ```
+
+   만약 설치하지 않았다면 [git CLI 설치 페이지](https://git-scm.com/downloads)에서 최신 버전을 다운로드 받아 설치합니다.
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 설치한 git CLI 버전을 확인합니다.
+
+    ```bash
+    git --version
+    ```
+
+   워크샵 문서 작성 시점 기준 가장 최신 버전은 `2.39.5`입니다. 만약 버전이 낮다면 [git CLI 설치 페이지](https://git-scm.com/downloads)에서 최신 버전을 다운로드 받아 설치합니다.
+
+## GitHub CLI 설치 확인
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 GitHub CLI를 설치했는지 확인합니다.
+
+    ```bash
+    # Bash/Zsh
+    which gh
+    ```
+
+    ```bash
+    # PowerShell
+    Get-Command gh
+    ```
+
+   만약 설치하지 않았다면 [GitHub CLI 설치 페이지](https://cli.github.com/)에서 최신 버전을 다운로드 받아 설치합니다.
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 설치한 GitHub CLI 버전을 확인합니다.
+
+    ```bash
+    gh --version
+    ```
+
+   워크샵 문서 작성 시점 기준 가장 최신 버전은 `2.62.0`입니다. 만약 버전이 낮다면 [GitHub CLI 설치 페이지](https://cli.github.com/)에서 최신 버전을 다운로드 받아 설치합니다.
+
+## Docker Desktop 설치 확인
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 Docker Desktop을 설치했는지 확인합니다.
+
+    ```bash
+    # Bash/Zsh
+    which docker
+    ```
+
+    ```bash
+    # PowerShell
+    Get-Command docker
+    ```
+
+   만약 설치하지 않았다면 [Docker Desktop 설치 페이지](https://docs.docker.com/get-started/introduction/get-docker-desktop/)에서 최신 버전을 다운로드 받아 설치합니다.
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 설치한 Docker Desktop 버전을 확인합니다.
+
+    ```bash
+    docker --version
+    ```
+
+   워크샵 문서 작성 시점 기준 가장 최신 버전은 `27.3.1`입니다. 만약 버전이 낮다면 [Docker Desktop 설치 페이지](https://docs.docker.com/get-started/introduction/get-docker-desktop/)에서 최신 버전을 다운로드 받아 설치합니다.
+
+## Visual Studio Code 설치 확인
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 Visual Studio Code를 설치했는지 확인합니다.
+
+    ```bash
+    # Bash/Zsh
+    which code
+    ```
+
+    ```bash
+    # PowerShell
+    Get-Command code
+    ```
+
+   만약 설치하지 않았다면 [Visual Studio Code 설치 페이지](https://code.visualstudio.com/)에서 최신 버전을 다운로드 받아 설치합니다.
+
+1. 터미널에서 아래 명령어를 실행시켜 현재 설치한 Visual Studio Code 버전을 확인합니다.
+
+    ```bash
+    code --version
+    ```
+
+   워크샵 문서 작성 시점 기준 가장 최신 버전은 `1.95.3`입니다. 만약 버전이 낮다면 [Visual Studio Code 설치 페이지](https://code.visualstudio.com/)에서 최신 버전을 다운로드 받아 설치합니다.
+
+## Visual Studio Code 시작
+
+1. 작업할 디렉토리로 이동합니다.
+1. 터미널에서 아래 명령어를 실행시켜 이 리포지토리를 자신의 GitHub 계정으로 포크한 후 자신의 컴퓨터로 클론합니다.
+
+    ```bash
+    gh repo fork devkimchi/test-container-workshop --clone
+    ```
+
+1. 터미널에서 아래 명령어를 실행시켜 클론한 디렉토리로 이동합니다.
+
+    ```bash
+    cd test-container-workshop
+    ```
+
+1. 터미널에서 아래 명령어를 실행시켜 Visual Studio Code를 실행시힙니다.
+
+    ```bash
+    code .
+    ```
+
+1. Visual Studio Code에서 터미널을 열고 아래 명령어를 실행시켜 현재 리포지토리의 클론 상태를 확인합니다.
+
+    ```bash
+    git remote -v
+    ```
+
+   이 명령어를 실행하면 아래와 같은 결과가 나와야 합니다. 만약 `origin`에 `devkimchi`가 보이면 자신의 리포지토리에서 다시 클론해야 합니다.
+
+    ```bash
+    origin  https://github.com/<자신의 GitHub ID>/test-container-workshop.git (fetch)
+    origin  https://github.com/<자신의 GitHub ID>/test-container-workshop.git (push)
+    upstream        https://github.com/devkimchi/test-container-workshop.git (fetch)
+    upstream        https://github.com/devkimchi/test-container-workshop.git (push)
+    ```
+
+1. Visual Studio Code의 터미널에서 아래 명령어를 실행시켜 [C# Dev Kit 익스텐션](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)을 설치했는지 확인합니다.
+
+    ```bash
+    # Bash/Zsh
+    code --list-extensions | grep "ms-dotnettools.csdevkit"
+    ```
+
+    ```bash
+    # PowerShell
+    code --list-extensions | Select-String "ms-dotnettools.csdevkit"
+    ```
+
+   만약 아무 메시지도 보이지 않는다면, 아직 설치하지 않은 것입니다. 아래 명령어를 실행시켜 설치합니다.
+
+    ```bash
+    code --install-extension "ms-dotnettools.csdevkit" --force
+    ```
+
+---
+
+축하합니다! 개발 환경 설정이 끝났습니다. 이제 [STEP 01: Dockerfile 및 Docker Compose 파일 생성](./step-01.md) 단계로 넘어가세요.
