@@ -9,11 +9,13 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddHttpClient<ProductApiClient>(client =>
 {
+    // client.BaseAddress = new("http://localhost:5051");
     client.BaseAddress = new("http://productapi:8080");
 });
 
 builder.Services.AddHttpClient<WeatherApiClient>(client =>
 {
+    // client.BaseAddress = new("http://localhost:5050");
     client.BaseAddress = new("http://weatherapi:8080");
 });
 

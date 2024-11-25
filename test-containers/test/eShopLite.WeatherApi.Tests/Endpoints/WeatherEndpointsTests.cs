@@ -18,7 +18,7 @@ public class WeatherEndpointsTests
     private IContainer? _container;
 
     [OneTimeSetUp]
-    public async Task Setup()
+    public void Setup()
     {
         this._container = new ContainerBuilder()
                               .WithImage("eshoplite-weatherapi-test:latest")

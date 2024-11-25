@@ -1,4 +1,5 @@
 ﻿@page "/weather"
+@using eShopLite.DataEntities
 @using eShopLite.WebApp.ApiClients
 @attribute [StreamRendering]
 @inject WeatherApiClient WeatherApi
@@ -28,7 +29,7 @@ else
             @foreach (var forecast in forecasts)
             {
                 <tr>
-                    <td>@forecast.Date.ToShortDateString()</td>
+                    <td>@forecast.Date.ToString("yyyy-MM-dd")</td>
                     <td>@forecast.TemperatureC</td>
                     <td>@forecast.TemperatureF</td>
                     <td>@forecast.Summary</td>
