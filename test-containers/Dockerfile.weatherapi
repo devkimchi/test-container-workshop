@@ -3,6 +3,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
 
 COPY ./src/eShopLite.WeatherApi /source/eShopLite.WeatherApi
+COPY ./src/eShopLite.DataEntities /source/eShopLite.DataEntities
 
 WORKDIR /source/eShopLite.WeatherApi
 

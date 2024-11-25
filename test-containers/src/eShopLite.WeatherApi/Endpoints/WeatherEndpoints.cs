@@ -1,3 +1,5 @@
+using eShopLite.DataEntities;
+
 namespace eShopLite.WeatherApi.Endpoints;
 
 public static class WeatherEndpoints
@@ -27,9 +29,4 @@ public static class WeatherEndpoints
         .WithName("GetWeatherForecast")
         .Produces<WeatherForecast[]>(StatusCodes.Status200OK);
     }
-}
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 }

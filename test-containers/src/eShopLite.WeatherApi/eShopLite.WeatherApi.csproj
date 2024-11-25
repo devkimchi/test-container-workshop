@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\eShopLite.DataEntities\eShopLite.DataEntities.csproj" />
+  </ItemGroup>
+
 </Project>

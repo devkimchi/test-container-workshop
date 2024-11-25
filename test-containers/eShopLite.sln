@@ -14,6 +14,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopLite.ProductData", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopLite.DataEntities", "src\eShopLite.DataEntities\eShopLite.DataEntities.csproj", "{9D38682E-62BF-41C2-B5BC-269AB6BC261E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{64AF42B2-1C6D-4778-B821-67C13F0CFC37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopLite.WeatherApi.Tests", "test\eShopLite.WeatherApi.Tests\eShopLite.WeatherApi.Tests.csproj", "{8BED28AB-9989-4FDB-AEF7-AB550681399E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eShopLite.ProductApi.Tests", "test\eShopLite.ProductApi.Tests\eShopLite.ProductApi.Tests.csproj", "{0DA2F026-9871-4F83-BABD-8F9F221B0BDA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +46,14 @@ Global
 		{9D38682E-62BF-41C2-B5BC-269AB6BC261E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D38682E-62BF-41C2-B5BC-269AB6BC261E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D38682E-62BF-41C2-B5BC-269AB6BC261E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8BED28AB-9989-4FDB-AEF7-AB550681399E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BED28AB-9989-4FDB-AEF7-AB550681399E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BED28AB-9989-4FDB-AEF7-AB550681399E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BED28AB-9989-4FDB-AEF7-AB550681399E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DA2F026-9871-4F83-BABD-8F9F221B0BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DA2F026-9871-4F83-BABD-8F9F221B0BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DA2F026-9871-4F83-BABD-8F9F221B0BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DA2F026-9871-4F83-BABD-8F9F221B0BDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +67,7 @@ Global
 		{7018FD93-13D8-4546-AC0A-A94AD039DB03} = {1B4637A1-20F5-41BB-BFC8-9E21FF5F62F5}
 		{09624705-45AE-44C4-BE13-41A00F436172} = {1B4637A1-20F5-41BB-BFC8-9E21FF5F62F5}
 		{9D38682E-62BF-41C2-B5BC-269AB6BC261E} = {1B4637A1-20F5-41BB-BFC8-9E21FF5F62F5}
+		{8BED28AB-9989-4FDB-AEF7-AB550681399E} = {64AF42B2-1C6D-4778-B821-67C13F0CFC37}
+		{0DA2F026-9871-4F83-BABD-8F9F221B0BDA} = {64AF42B2-1C6D-4778-B821-67C13F0CFC37}
 	EndGlobalSection
 EndGlobal
