@@ -1,4 +1,4 @@
-# STEP 03: TestContaienr로 통합테스트하기
+# STEP 03: TestContaienr로 통합 테스트하기
 
 워크샵을 진행하기 위한 문서를 제공합니다.
 

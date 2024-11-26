@@ -8,10 +8,10 @@
 
 | 순서                    | 제목                                           |
 |-------------------------|------------------------------------------------|
-| [STEP 00](./step-00.md) | 개발 환경 설정                                 |
-| [STEP 01](./step-01.md) | Dockerfile 및 Docker Compose 파일 생성         |
-| [STEP 02](./step-02.md) | TestContainer로 API 테스트하기                 |
-| [STEP 03](./step-03.md) | TestContainer로 통합테스트하기                 |
+| [STEP 00](./step-00.md) | 개발 환경 설정하기                             |
+| [STEP 01](./step-01.md) | Dockerfile 및 Docker Compose 파일 생성하기     |
+| [STEP 02](./step-02.md) | Testcontainers로 API 테스트하기                |
+| [STEP 03](./step-03.md) | Testcontainers로 통합 테스트하기               |
 | [STEP 04](./step-04.md) |                                                |
 | [STEP 05](./step-05.md) |                                                |
 | [STEP 06](./step-06.md) |                                                |

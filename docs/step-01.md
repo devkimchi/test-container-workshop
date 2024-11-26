@@ -1,4 +1,4 @@
-# STEP 01: Dockerfile 및 Docker Compose 파일 생성
+# STEP 01: Dockerfile 및 Docker Compose 파일 생성하기
 
 이 단계에서는 기본 프로젝트에 `Dockerfile` 및 `Docker Compose` 파일을 생성합니다.
 
@@ -40,7 +40,7 @@ eShopLite
     $REPOSITORY_ROOT = git rev-parse --show-toplevel
     cd $REPOSITORY_ROOT
 
-    New-Item -Type Directory -Path workshop -Force && Copy-Item -Path ./save-points/stepp-00/* -Destination ./workshop -Recurse -Force
+    New-Item -Type Directory -Path workshop -Force && Copy-Item -Path ./save-points/step-00/* -Destination ./workshop -Recurse -Force
     ```
 
 ## 기본 프로젝트 빌드 및 실행
@@ -438,4 +438,4 @@ eShopLite
 
 ---
 
-축하합니다! 개발 환경 설정이 끝났습니다. 이제 [STEP 02: TestContaienr로 API 테스트하기](./step-02.md) 단계로 넘어가세요.
+축하합니다! **Dockerfile 및 Docker Compose 파일 생성하기** 실습이 끝났습니다. 이제 [STEP 02: Testcontaienrs로 API 테스트하기](./step-02.md) 단계로 넘어가세요.
