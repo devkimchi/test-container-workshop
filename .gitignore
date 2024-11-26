@@ -398,4 +398,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Project-specific
+workshop/
+workshop*/
 Database.*

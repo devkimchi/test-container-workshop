@@ -35,6 +35,18 @@
 
    `9.0.100` 이상의 버전이 보여야 합니다. 없을 경우 [.NET SDK 설치 페이지](https://dotnet.microsoft.com/download/dotnet/9.0)에서 최신 버전을 다운로드 받아 설치합니다.
 
+1. 아래 명령어를 실행시켜 로컬머신 개발용 HTTPS 인증서를 설치합니다.
+
+    ```bash
+    dotnet dev-certs https --trust
+    ```
+
+1. 아래 명령어를 실행시켜 .NET Aspire 프로젝트 템플릿을 최신으로 업데이트합니다.
+
+    ```bash
+    dotnet new install Aspire.ProjectTemplates --force
+    ```
+
 ## PowerShell 설치 확인
 
 1. 터미널에서 아래 명령어를 실행시켜 현재 PowerShell을 설치했는지 확인합니다.
