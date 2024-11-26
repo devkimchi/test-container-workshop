@@ -12,7 +12,5 @@
 | [STEP 01](./step-01.md) | Dockerfile 및 Docker Compose 파일 생성하기     |
 | [STEP 02](./step-02.md) | Testcontainers로 API 테스트하기                |
 | [STEP 03](./step-03.md) | Testcontainers로 통합 테스트하기               |
-| [STEP 04](./step-04.md) |                                                |
-| [STEP 05](./step-05.md) |                                                |
-| [STEP 06](./step-06.md) |                                                |
-| [STEP 07](./step-07.md) |                                                |
+| [STEP 04](./step-04.md) | .NET Aspire로 컨테이너 오케스트레이션하기      |
+| [STEP 05](./step-05.md) | .NET Aspire로 통합 테스트하기                  |
