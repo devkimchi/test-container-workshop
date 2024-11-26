@@ -1,6 +1,6 @@
-# STEP 02: Testcontaienrs로 API 테스트하기
+# STEP 02: Testcontainers로 API 테스트하기
 
-이 단계에서는 API 앱을 [Testcontainers](https://dotnet.testcontainers.org/)를 이용해 컨테이너 안에서 동작하는 애플리케이션을 테스트합니다.
+이 단계에서는 [Testcontainers](https://dotnet.testcontainers.org/)를 이용해 컨테이너 안에서 동작하는 API 애플리케이션을 테스트합니다.
 
 ## 사전 준비 사항
 
@@ -9,7 +9,7 @@
 - [Docker Desktop](https://docs.docker.com/get-started/introduction/get-docker-desktop/) 설치
 - [Visual Studio Code](https://code.visualstudio.com/) 설치
 
-각 사전 준비사항의 설치 여부 확인은 [STEP 00: 개발 환경 설정](./step-00.md) 문서를 참고해주세요.
+각 사전 준비사항의 설치 여부 확인은 [STEP 00: 개발 환경 설정하기](./step-00.md) 문서를 참고해주세요.
 
 ## 이전 프로젝트 복사
 
@@ -22,7 +22,7 @@
     REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
     cd $REPOSITORY_ROOT
 
-    mkdir -p workshop && cp -a save-points/step-00/. workshop/
+    mkdir -p workshop && cp -a save-points/step-01/. workshop/
     ```
 
     ```powershell
@@ -30,7 +30,7 @@
     $REPOSITORY_ROOT = git rev-parse --show-toplevel
     cd $REPOSITORY_ROOT
 
-    New-Item -Type Directory -Path workshop -Force && Copy-Item -Path ./save-points/step-00/* -Destination ./workshop -Recurse -Force
+    New-Item -Type Directory -Path workshop -Force && Copy-Item -Path ./save-points/step-01/* -Destination ./workshop -Recurse -Force
     ```
 
 1. 아래 명령어를 통해 전체 프로젝트를 빌드합니다.
@@ -113,7 +113,7 @@ eShopLite
     }
     ```
 
-1. `private IContainer? _container;`줄 바로 아래에 다음 코드를 입력합니다.
+1. `private IContainer? _container;` 줄 바로 아래에 다음 코드를 입력합니다.
 
     ```csharp
         [OneTimeSetUp]
@@ -135,9 +135,9 @@ eShopLite
 
    > - `Setup()` 메서드는 테스트 클래스의 모든 테스트 메서드를 실행하기 전에 딱 한 번 실행합니다.
    >   - `IContainer` 인스턴스를 생성합니다.
-   >   - `.WithImage("eshoplite-productapi-test:latest")`: 컨테이너를 생성할 때 사용할 이미지를 지정합니다.
-   >   - `.WithPortBinding(8080, true)`: 컨테이너의 8080 포트를 호스트의 임의의 포트에 바인딩합니다.
-   >   - `.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8080))`: 컨테이너가 8080 포트를 사용할 수 있을 때까지 대기합니다.
+   >     - `.WithImage("eshoplite-productapi-test:latest")`: 컨테이너를 생성할 때 사용할 이미지를 지정합니다.
+   >     - `.WithPortBinding(8080, true)`: 컨테이너의 8080 포트를 호스트의 임의의 포트에 바인딩합니다.
+   >     - `.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8080))`: 컨테이너가 8080 포트를 사용할 수 있을 때까지 대기합니다.
    > - `Teardown()` 메서드는 테스트 클래스의 모든 테스트 메서드를 실행한 후에 딱 한 번 실행합니다.
    >   - `IContainer` 인스턴스를 삭제합니다.
 
@@ -329,4 +329,4 @@ eShopLite
 
 ---
 
-축하합니다! **Testcontaienrs로 API 테스트하기** 실습이 끝났습니다. 이제 [STEP 03: Testcontaienrs로 통합 테스트하기](./step-03.md) 단계로 넘어가세요.
+축하합니다! **Testcontainers로 API 테스트하기** 실습이 끝났습니다. 이제 [STEP 03: Testcontainers로 통합 테스트하기](./step-03.md) 단계로 넘어가세요.

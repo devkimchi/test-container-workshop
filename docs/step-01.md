@@ -1,6 +1,6 @@
 # STEP 01: Dockerfile 및 Docker Compose 파일 생성하기
 
-이 단계에서는 기본 프로젝트에 `Dockerfile` 및 `Docker Compose` 파일을 생성합니다.
+이 단계에서는 기본 프로젝트에서 제공한 각각의 앱을 컨테이너화 시킬 수 있는 `Dockerfile` 파일과 오케스트레이션 할 수 있는 `Docker Compose` 파일을 생성합니다.
 
 ## 사전 준비 사항
 
@@ -9,7 +9,7 @@
 - [Docker Desktop](https://docs.docker.com/get-started/introduction/get-docker-desktop/) 설치
 - [Visual Studio Code](https://code.visualstudio.com/) 설치
 
-각 사전 준비사항의 설치 여부 확인은 [STEP 00: 개발 환경 설정](./step-00.md) 문서를 참고해주세요.
+각 사전 준비사항의 설치 여부 확인은 [STEP 00: 개발 환경 설정하기](./step-00.md) 문서를 참고해주세요.
 
 ## 기본 프로젝트 복사
 
@@ -438,4 +438,4 @@ eShopLite
 
 ---
 
-축하합니다! **Dockerfile 및 Docker Compose 파일 생성하기** 실습이 끝났습니다. 이제 [STEP 02: Testcontaienrs로 API 테스트하기](./step-02.md) 단계로 넘어가세요.
+축하합니다! **Dockerfile 및 Docker Compose 파일 생성하기** 실습이 끝났습니다. 이제 [STEP 02: Testcontainers로 API 테스트하기](./step-02.md) 단계로 넘어가세요.
