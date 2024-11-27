@@ -45,6 +45,28 @@
 
 앞서 진행했던 실습과 달리, 이번 실습에서는 .NET Aspire를 이용해 컨테이너 오케스트레이션을 진행합니다.
 
+.NET Aspire 오케스트레이션 프로젝트를 설치하고 나면 전체 솔루션 구조는 아래와 같이 바뀝니다.
+
+```text
+eShopLite
+└── src
+    ├── eShopLite.AppHost
+    │   ├── eShopLite.WebApp
+    │   ├── eShopLite.ProductApi
+    │   └── eShopLite.WeatherApi
+    ├── eShopLite.ServiceDefaults
+    ├── eShopLite.WebApp
+    │   ├── eShopLite.DataEntities
+    │   └── eShopLite.ServiceDefaults
+    ├── eShopLite.WeatherApi
+    │   ├── eShopLite.DataEntities
+    │   └── eShopLite.ServiceDefaults
+    └── eShopLite.ProductApi
+        ├── eShopLite.ProductData
+        │   └── eShopLite.DataEntities
+        └── eShopLite.ServiceDefaults
+```
+
 ### .NET Aspire 프로젝트 추가
 
 1. 아래 명령어를 실행시켜 .NET Aspire 오케스트레이터 프로젝트를 추가합니다.

@@ -23,7 +23,6 @@ public class ProductsPageTests : PageTest
         IgnoreHTTPSErrors = true,
     };
 
-
     [OneTimeSetUp]
     public void Setup()
     {
@@ -100,8 +99,6 @@ public class ProductsPageTests : PageTest
         var uri = new UriBuilder(Uri.UriSchemeHttp, this._webAppContainer!.Hostname, this._webAppContainer!.GetMappedPublicPort(8080), "/products").Uri.ToString();
         await Page.GotoAsync(uri);
         await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-        var tomorrow = DateOnly.FromDateTime(DateTime.Now).AddDays(1);
-        var fifth = tomorrow.AddDays(4);
 
         // Act
         var table = Page.Locator("table.table");

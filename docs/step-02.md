@@ -82,6 +82,8 @@ eShopLite
     dotnet add ./test/eShopLite.ProductApi.Tests reference ./src/eShopLite.DataEntities
     ```
 
+## 테스트 코드 작성: Product API
+
 1. 아래 명령어를 통해 테스트 프로젝트에 테스트 클래스를 생성합니다.
 
     ```bash
@@ -261,6 +263,12 @@ eShopLite
     └── eShopLite.WeatherApi.Tests
         └── eShopLite.DataEntities
 ```
+
+> **🚨🚨🚨 도전‼️ 🚨🚨🚨**
+> 
+> 위의 `eShopLite.ProductApi.Tests` 테스트 프로젝트와 마찬가지로 `eShopLite.WeatherApi.Tests` 프로젝트를 생성해 보세요.
+
+## 테스트 코드 작성: Weather API
 
 > **🚨🚨🚨 도전‼️ 🚨🚨🚨**
 > 

@@ -95,7 +95,7 @@ eShopLite
 
    > 프론트엔드 앱은 모든 백엔드 API를 호출해야 하므로 모든 컨테이너 이미지를 빌드해야 합니다.
 
-1. 마찬가지로 `</Project>` 바로 위에 다음 `<Target>...</Target>` 노드를 입력해서 테스트 실행 후에 Playwright를 설치하도록 합니다.
+1. 마찬가지로 `</Project>` 바로 위에 다음 `<Target>...</Target>` 노드를 입력해서 프로젝트 빌드 후에 Playwright를 설치하도록 합니다.
 
     ```xml
       <Target Name="InstallPlaywright" AfterTargets="Build">
@@ -104,6 +104,10 @@ eShopLite
     
     </Project>
     ```
+
+## 테스트 코드 작성: Web App
+
+### 테스트 코드 작성: Product Page
 
 1. 아래 명령어를 통해 테스트 프로젝트에 `/products` 페이지를 위한 테스트 클래스를 생성합니다.
 
@@ -290,8 +294,6 @@ eShopLite
             var uri = new UriBuilder(Uri.UriSchemeHttp, this._webAppContainer!.Hostname, this._webAppContainer!.GetMappedPublicPort(8080), "/products").Uri.ToString();
             await Page.GotoAsync(uri);
             await Page.WaitForLoadStateAsync(LoadState.NetworkIdle);
-            var tomorrow = DateOnly.FromDateTime(DateTime.Now).AddDays(1);
-            var fifth = tomorrow.AddDays(4);
     
             // Act
             var table = Page.Locator("table.table");
@@ -316,6 +318,8 @@ eShopLite
     ```
 
 1. 모든 테스트를 성공적으로 통과했는지 확인합니다.
+
+### 테스트 코드 작성: Weather Page
 
 > **🚨🚨🚨 도전‼️ 🚨🚨🚨**
 > 

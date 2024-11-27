@@ -23,7 +23,6 @@ public class WeatherPageTests : PageTest
         IgnoreHTTPSErrors = true,
     };
 
-
     [OneTimeSetUp]
     public void Setup()
     {
