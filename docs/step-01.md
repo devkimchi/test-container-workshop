@@ -99,7 +99,13 @@ eShopLite
 1. 아래 명령어를 통해 `Dockerfile.webapp`을 생성합니다.
 
     ```bash
+    # Bash/Zsh
     touch Dockerfile.webapp
+    ```
+
+    ```powershell
+    # PowerShell
+    New-Item -Type File -Path Dockerfile.webapp -Force
     ```
 
 1. `Dockerfile.webapp`을 열고 아래 내용을 입력합니다.
@@ -168,7 +174,13 @@ eShopLite
 1. 아래 명령어를 통해 `Dockerfile.productapi`을 생성합니다.
 
     ```bash
+    # Bash/Zsh
     touch Dockerfile.productapi
+    ```
+
+    ```powershell
+    # PowerShell
+    New-Item -Type File -Path Dockerfile.productapi -Force
     ```
 
 1. `Dockerfile.productapi`을 열고 아래 내용을 입력합니다.
@@ -380,8 +392,15 @@ eShopLite
 1. 아래 명령어를 실행시켜 `compose.yaml` 파일을 생성합니다.
 
     ```bash
+    # Bash/Zsh
     cd $REPOSITORY_ROOT/workshop
     touch compose.yaml
+    ```
+
+    ```powershell
+    # PowerShell
+    cd $REPOSITORY_ROOT/workshop
+    New-Item -Type File -Path compose.yaml -Force
     ```
 
    > - `compose.yaml`의 위치는 `eShopLite.sln` 파일의 위치와 동일한 디렉토리에 있어야 합니다.

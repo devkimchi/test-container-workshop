@@ -133,7 +133,13 @@ eShopLite
 1. 아래 명령어를 통해 테스트 프로젝트에 `/` 페이지를 위한 테스트 클래스를 생성합니다.
 
     ```bash
+    # Bash/Zsh
     touch $REPOSITORY_ROOT/workshop/test/eShopLite.AppHost.Tests/HomePageTests.cs
+    ```
+
+    ```powershell
+    # PowerShell
+    New-Item -Type File -Path $REPOSITORY_ROOT/workshop/test/eShopLite.AppHost.Tests/HomePageTests.cs -Force
     ```
 
 1. `test/eShopLite.AppHost.Tests/HomePageTests.cs` 파일을 열고 아래와 같이 입력합니다.
