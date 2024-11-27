@@ -87,8 +87,15 @@ eShopLite
 1. 아래 명령어를 통해 테스트 프로젝트에 테스트 클래스를 생성합니다.
 
     ```bash
+    # Bash/Zsh
     mkdir -p $REPOSITORY_ROOT/workshop/test/eShopLite.ProductApi.Tests/Endpoints
     touch $REPOSITORY_ROOT/workshop/test/eShopLite.ProductApi.Tests/Endpoints/ProductEndpointsTests.cs
+    ```
+
+    ```powershell
+    # PowerShell
+    New-Item -Type Directory -Path $REPOSITORY_ROOT/workshop/test/eShopLite.ProductApi.Tests/Endpoints -Force
+    New-Item -Type File -Path $REPOSITORY_ROOT/workshop/test/eShopLite.ProductApi.Tests/Endpoints/ProductEndpointsTests.cs -Force
     ```
 
 1. `test/eShopLite.ProductApi.Tests/Endpoints/ProductEndpointsTests.cs` 파일을 열고 아래와 같이 입력합니다.
