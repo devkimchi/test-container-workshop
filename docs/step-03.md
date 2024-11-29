@@ -114,16 +114,16 @@ eShopLite
     ```bash
     # Bash/Zsh
     mkdir -p $REPOSITORY_ROOT/workshop/test/eShopLite.WebApp.Tests/Components/Pages
-    touch $REPOSITORY_ROOT/workshop/test/eShopLite.ProductApi.Tests/Components/Pages/ProductsPageTests.cs
+    touch $REPOSITORY_ROOT/workshop/test/eShopLite.WebApp.Tests/Components/Pages/ProductsPageTests.cs
     ```
 
     ```powershell
     # PowerShell
     New-Item -Type Directory -Path $REPOSITORY_ROOT/workshop/test/eShopLite.WebApp.Tests/Components/Pages -Force
-    New-Item -Type File -Path $REPOSITORY_ROOT/workshop/test/eShopLite.ProductApi.Tests/Components/Pages/ProductsPageTests.cs -Force
+    New-Item -Type File -Path $REPOSITORY_ROOT/workshop/test/eShopLite.WebApp.Tests/Components/Pages/ProductsPageTests.cs -Force
     ```
 
-1. `test/eShopLite.ProductApi.Tests/Components/Pages/ProductsPageTests.cs` 파일을 열고 아래와 같이 입력합니다.
+1. `test/eShopLite.WebApp.Tests/Components/Pages/ProductsPageTests.cs` 파일을 열고 아래와 같이 입력합니다.
 
     ```csharp
     using DotNet.Testcontainers.Builders;

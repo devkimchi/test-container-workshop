@@ -57,12 +57,19 @@ eShopLite
 
     ```bash
     # Terminal 1
+    cd $REPOSITORY_ROOT/workshop
     dotnet run --project ./src/eShopLite.WeatherApi
+    ```
 
+    ```bash
     # Terminal 2
+    cd $REPOSITORY_ROOT/workshop
     dotnet run --project ./src/eShopLite.ProductApi
+    ```
 
+    ```bash
     # Terminal 3
+    cd $REPOSITORY_ROOT/workshop
     dotnet watch run --project ./src/eShopLite.WebApp
     ```
 
@@ -87,6 +94,8 @@ eShopLite
 ```
 
 따라서, 개별 애플리케이션마다 독립적인 컨테이너 이미지를 생성할 때 이 의존성을 해결해야 합니다.
+
+> 이 시점부터는 Docker Desktop 애플리케이션이 실행중이어야 합니다. 작업표시줄에 Docker 아이콘이 보이지 않는다면 Docker Desktop을 실행해주세요.
 
 ### `Dockerfile` 생성: `eShopLite.WebApp`
 
@@ -451,8 +460,8 @@ eShopLite
 1. 터미널 창에서 `Ctrl`+`C`를 눌러 애플리케이션을 종료합니다.
 1. 아래 명령어를 실행시켜 컨테이너와 네트워크, 컨테이너 이미지를 한 번에 삭제합니다.
 
-    ```yml
-    docker compose down --local
+    ```bash
+    docker compose down --rmi local
     ```
 
 ---
