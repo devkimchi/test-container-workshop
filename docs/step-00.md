@@ -167,6 +167,8 @@
 
    워크샵 문서 작성 시점 기준 가장 최신 버전은 `1.95.3`입니다. 만약 버전이 낮다면 [Visual Studio Code 설치 페이지](https://code.visualstudio.com/)에서 최신 버전을 다운로드 받아 설치합니다.
 
+   > 만약 터미널에서 `code` 명령어를 실행시킬 수 없다면, [이 문서](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)를 참고하여 설정합니다.
+
 ## Visual Studio Code 시작
 
 1. 작업할 디렉토리로 이동합니다.
