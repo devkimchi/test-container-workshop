@@ -73,9 +73,22 @@ eShopLite
     dotnet watch run --project ./src/eShopLite.WebApp
     ```
 
+   > 터미널마다 `$REPOSITORY_ROOT` 값을 인식하지 못할 수 있습니다. 이 때는 각 터미널 별로 아래 명령어를 다시 실행시켜 주세요.
+   > 
+   > ```bash
+   > # Bash/Zsh
+   > REPOSITORY_ROOT=$(git rev-parse --show-toplevel)
+   > ```
+   > 
+   > ```powershell
+   > # PowerShell
+   > $REPOSITORY_ROOT = git rev-parse --show-toplevel
+   > ```
+
 1. 자동으로 웹 브라우저가 열리면서 `https://localhost:7000` 또는 `http://localhost:5000` 주소로 접속합니다. 만약 자동으로 웹 브라우저가 열리지 않았다면 수동으로 주소를 입력합니다.
 1. 웹브라우저에서 `/weather` 또는 `/products` 경로로 접속하셔 각각 페이지가 정상적으로 보이는지 확인합니다.
 1. 각 터미널 창에서 `Ctrl`+`C`를 눌러 애플리케이션을 종료합니다.
+1. 터미널을 하나만 남겨두고 모두 종료합니다.
 
 ## `Dockerfile`을 이용한 컨테이너 이미지 생성
 
