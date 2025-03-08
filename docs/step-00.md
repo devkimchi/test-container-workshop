@@ -33,7 +33,7 @@
     dotnet --list-sdks
     ```
 
-   `9.0.100` 이상의 버전이 보여야 합니다. 없을 경우 [.NET SDK 설치 페이지](https://dotnet.microsoft.com/download/dotnet/9.0)에서 최신 버전을 다운로드 받아 설치합니다.
+   `9.0.200` 이상의 버전이 보여야 합니다. 없을 경우 [.NET SDK 설치 페이지](https://dotnet.microsoft.com/download/dotnet/9.0)에서 최신 버전을 다운로드 받아 설치합니다.
 
 1. 아래 명령어를 실행시켜 로컬머신 개발용 HTTPS 인증서를 설치합니다.
 
@@ -45,6 +45,12 @@
 
     ```bash
     dotnet new install Aspire.ProjectTemplates --force
+    ```
+
+1. 아래 명령어를 실행시켜 .NET Aspire 프로젝트 라이브러리를 최신으로 업데이트 합니다.
+
+    ```bash
+    dotnet new update
     ```
 
 ## PowerShell 설치 확인
