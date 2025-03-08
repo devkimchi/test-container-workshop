@@ -45,6 +45,15 @@
 
 - 각 단계별 중간 결과물은 [세이브 포인트](./save-points)에서 확인할 수 있습니다.
 
+## 언어별 문서
+
+이 워크샵은 아래 언어로도 읽어볼 수 있습니다!
+
+| 언어   | 언어 코드 | 문서 링크                                  | 최종 수정일 |
+| ------ | --------- | ------------------------------------------ | ----------- |
+| 영어   | en        | [영문 번역](./translations/en/README.md)   | 2025-03-09  |
+| 태국어 | th        | [태국어 번역](./translations/th/README.md) | 2025-03-09  |
+
 ## 추가 참고 자료
 
 - [Testcontainers](https://www.testcontainers.org/) &ndash; [.NET](https://dotnet.testcontainers.org/)

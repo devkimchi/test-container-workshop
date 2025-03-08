@@ -402,3 +402,6 @@ FodyWeavers.xsd
 workshop/
 workshop*/
 Database.*
+
+.venv/
+.env
