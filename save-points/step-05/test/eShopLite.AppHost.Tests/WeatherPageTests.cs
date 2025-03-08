@@ -93,6 +93,7 @@ public class WeatherPageTests : PageTest
     [OneTimeTearDown]
     public async Task Teardown()
     {
+        this._resource!.Dispose();
         await this._app!.DisposeAsync().ConfigureAwait(false);
     }
 }
