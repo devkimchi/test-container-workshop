@@ -67,7 +67,7 @@ eShopLite
         └── eShopLite.ServiceDefaults
 ```
 
-### Adding the .NET Aspire Project
+### Add the .NET Aspire Project
 
 1. Run the following command to add the .NET Aspire orchestrator project:
 
@@ -99,20 +99,20 @@ eShopLite
     dotnet add ./src/eShopLite.WeatherApi reference ./src/eShopLite.ServiceDefaults
     ```
 
-### Modify `eShopLite.WebApp` 프로젝트 수정
+### Modify `eShopLite.WebApp` Project
 
-1. `src/eShopLite.WebApp/Program.cs` 파일을 열고 `var builder = WebApplication.CreateBuilder(args);` by adding the following content immediately below:
+1. Open `src/eShopLite.WebApp/Program.cs`, find `var builder = WebApplication.CreateBuilder(args);` and add the following content immediately below:
 
     ```csharp
     builder.AddServiceDefaults();
     ```
 
-   > This enables the use of services provided by the base service project.
+   > This enables the use of default services provided by .NET Aspire.
 
-1. Update the following code:
+2. Update the following code:
 
     ```csharp
-    // 변경전
+    // Before
     builder.Services.AddHttpClient<ProductApiClient>(client =>
     {
         client.BaseAddress = new("http://localhost:5051");
@@ -125,7 +125,7 @@ eShopLite
     ```
 
     ```csharp
-    // 변경후
+    // After
     builder.Services.AddHttpClient<ProductApiClient>(client =>
     {
         client.BaseAddress = new("https+http://productapi");
@@ -137,46 +137,46 @@ eShopLite
     });
     ```
 
-   > Modify to use service discovery provided by the orchestrator.
+   > Modify to use service discovery provided by .NET Aspire.
 
-1. Add the following content right before `app.Run();`:
+3. Add the following content right before `app.Run();`:
 
     ```csharp
     app.MapDefaultEndpoints();
     ```
 
-   > Enables the use of the health check endpoint from the base service project.
+   > Enables the use of the health check endpoint provided from .NET Aspire.
 
-### Modify `eShopLite.ProductApi` 프로젝트 수정
+### Modify `eShopLite.ProductApi` Project
 
-1. `src/eShopLite.ProductApi/Program.cs` 파일을 열고 `var builder = WebApplication.CreateBuilder(args);` by adding the following content immediately below:
+1. Open `src/eShopLite.ProductApi/Program.cs`, find `var builder = WebApplication.CreateBuilder(args);` and add the following content immediately below:
 
     ```csharp
     builder.AddServiceDefaults();
     ```
 
-1. Add the following content right before `app.Run();`:
+1. Add the following line right before `app.Run();`:
 
     ```csharp
     app.MapDefaultEndpoints();
     ```
 
-### Modify `eShopLite.WeatherApi` 프로젝트 수정
+### Modify `eShopLite.WeatherApi` Project
 
 > **🚨🚨🚨 도전‼️ 🚨🚨🚨**
 > 
-> 위의 `eShopLite.ProductApi` 프로젝트 수정과 마찬가지로 `eShopLite.WeatherApi` 프로젝트를 수정해 보세요.
+> Like modifying the `eShopLite.ProductApi` project, modify the `eShopLite.WeatherApi` project.
 
-### `eShopLite.AppHost` 프로젝트 수정
+### Modify `eShopLite.AppHost` Project
 
-1. `src/eShopLite.AppHost/Program.cs` 파일을 열고 `var builder = DistributedApplication.CreateBuilder(args);` by adding the following content immediately below:
+1. Open `src/eShopLite.AppHost/Program.cs`, find `var builder = DistributedApplication.CreateBuilder(args);` and add the following lines immediately below:
 
     ```csharp
     var productapi = builder.AddProject<Projects.eShopLite_ProductApi>("productapi");
     var weatherapi = builder.AddProject<Projects.eShopLite_WeatherApi>("weatherapi");
     ```
 
-   > Add the orchestrator project: `AppHost`에 `ProductApi`와 `WeatherApi`.
+   > Add both `ProductApi` and `WeatherApi` to the orchestrator project, `AppHost`.
 
 1. Add the following content in the subsequent line:
 
@@ -189,15 +189,15 @@ eShopLite
            .WaitFor(weatherapi);
     ```
 
-   > Configure the orchestrator project `AppHost`에 `WebApp` 프로젝트를 추가합니다.
+   > Configure the `WebApp` project in the orchestrator, `AppHost`
    > 
-   > - `.WithExternalHttpEndpoints()`: 외부 HTTP 엔드포인트를 사용할 수 있도록 설정합니다.
-   > - `.WithReference(productapi)`: `WebApp` 프로젝트가 `ProductApi` 프로젝트를 참조하도록 설정합니다.
-   > - `.WithReference(weatherapi)`: `WebApp` 프로젝트가 `WeatherApi` 프로젝트를 참조하도록 설정합니다.
-   > - `.WaitFor(productapi)`: `ProductApi` 프로젝트가 준비될 때까지 기다리도록 설정합니다.
-   > - `.WaitFor(weatherapi)`: `WeatherApi` to wait until all projects are ready.
+   > - `.WithExternalHttpEndpoints()`: exposes for the public access.
+   > - `.WithReference(productapi)`: lets `WebApp` discover `ProductApi`.
+   > - `.WithReference(weatherapi)`: lets `WebApp` discover `WeatherApi`.
+   > - `.WaitFor(productapi)`: lets `WebApp` wait for `ProductApi` being up and running.
+   > - `.WaitFor(weatherapi)`: lets `WebApp` wait for `WeatherApi` being up and running.
 
-### Running the .NET Aspire Orchestrator
+### Run the .NET Aspire Orchestrator
 
 1. Execute the following command to run the .NET Aspire orchestrator:
 
@@ -207,27 +207,27 @@ eShopLite
     dotnet watch run --project ./src/eShopLite.AppHost
     ```
 
-1. A web browser will automatically open, displaying the dashboard. The dashboard will show `productapi`, `weatherapi`, `webapp` 리소스가 나타나면 성공입니다.
+1. A web browser will automatically open, displaying the dashboard. The dashboard will show `productapi`, `weatherapi` and `webapp` resources.
 
     ![Aspire Dashboard](../../../docs/images/aspire-dashboard-1.png)
 
-   > 경우에 따라 아래와 같이 로그인 화면이 나타날 수 있습니다.
+   > You might be seeing this login screen.
    > 
    > ![Aspire Dashboard Login](../../../docs/images/aspire-dashboard-login.png)
    > 
-   > 화살표가 가리키는 링크를 클릭해서 안내에 따라 로그인하면 대시보드를 볼 수 있습니다.
+   > Click the link and follow the instructions to get into the dashboard.
 
-1. 대시보드에 나타난 `productapi`와 `weatherapi` 각각의 Endpoints 링크를 클릭하면 OpenAPI 문서를 볼 수 있습니다.
-1. 대시보드에 나타난 `webapp`의 Endpoints 링크를 클릭하면 웹 앱을 볼 수 있습니다. `/products`와 `/weather` 페이지를 확인해 보세요.
-1. 터미널에서 `Ctrl`+`C`를 눌러 .NET Aspire 오케스트레이터를 종료합니다.
+1. Click each endpoint of `productapi` and `weatherapi` to see their respective OpenAPI document.
+1. Click the enpoint of `webapp` to see the web application. Navigate to both `/products` and `/weather` pages and see whether they are properly up.
+1. Type `Ctrl`+`C` in the terminal and stop the .NET Aspire orchestrator.
 
-## .NET Aspire 오케스트레이터에서 데이터베이스 교체
+## Replace Database through .NET Aspire Orchestrator
 
-지금까지 사용하던 데이터베이스를 SQLite에서 PostgreSQL로 교체해 보겠습니다.
+Let's change the database from SQLite to PostgreSQL.
 
-### `eShopLite.AppHost` 프로젝트 수정
+### Modify `eShopLite.AppHost` Project
 
-1. 아래 명령어를 실행시켜 `eShopLite.AppHost`. Add the PostgreSQL package to the `eShopLite.AppHost` project.
+1. Run the following command to add the PostgreSQL package to the `eShopLite.AppHost` project.
 
     ```bash
     cd $REPOSITORY_ROOT/workshop
@@ -235,7 +235,7 @@ eShopLite
     dotnet add ./src/eShopLite.AppHost package Aspire.Hosting.PostgreSQL
     ```
 
-1. Add the following content immediately below `src/eShopLite.AppHost/Program.cs` 파일을 열고 `var builder = DistributedApplication.CreateBuilder(args);`:
+1. Open `src/eShopLite.AppHost/Program.cs`, find `var builder = DistributedApplication.CreateBuilder(args);` and add the following content immediately below:
 
     ```csharp
     var productsdb = builder.AddPostgres("pg")
@@ -243,31 +243,32 @@ eShopLite
                             .AddDatabase("productsdb");
     ```
 
-   > Add a PostgreSQL database.
+   > It adds a PostgreSQL database.
    > 
-   > - Add a database named `productsdb`: pgAdmin 대시보드를 사용할 수 있도록 설정합니다.
-   > - `productsdb`.
+   > - `.AddPostgres("pg")`: adds a container for PostgreSQL database.
+   > - `.WithPgAdmin()`: adds a container for PGAdmin dashboard.
+   > - `.AddDatabase("productsdb")`: adds a new database called `productsdb`.
 
 1. Modify the following content:
 
     ```csharp
-    // 변경전
+    // Before
     var productapi = builder.AddProject<Projects.eShopLite_ProductApi>("productapi");
     ```
 
     ```csharp
-    // 변경후
+    // After
     var productapi = builder.AddProject<Projects.eShopLite_ProductApi>("productapi")
                             .WithReference(productsdb);
     ```
 
-   > Add the PostgreSQL package to the `ProductApi` 프로젝트에 PostgreSQL 데이터베이스를 추가합니다.
+   > It adds the PostgreSQL database to the `ProductApi` project.
    > 
-   > - `.WithReference(productsdb)`: `ProductApi` 프로젝트가 PostgreSQL 데이터베이스를 참조하도록 설정합니다.
+   > - `.WithReference(productsdb)`: let `ProductApi` discover the PostgreSQL database, `productsdb`.
 
-### `eShopLite.ProductApi` 프로젝트 수정
+### Modify `eShopLite.ProductApi` Project
 
-1. 아래 명령어를 실행시켜 `eShopLite.ProductApi` project.
+1. Run the following command to add a PostgreSQL database packaget to the `eShopLite.ProductApi` project.
 
     ```bash
     cd $REPOSITORY_ROOT/workshop
@@ -275,7 +276,7 @@ eShopLite
     dotnet add ./src/eShopLite.ProductApi package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
     ```
 
-1. The `src/eShopLite.ProductApi/appsettings.json` 파일을 열고 `ConnectionStrings` 섹션을 완전히 지웁니다. 이후 `appsettings.json` file should be updated as follows:
+1. Open `src/eShopLite.ProductApi/appsettings.json`, remove the `ConnectionStrings` section completely. The `appsettings.json` file should look like:
 
     ```json
     {
@@ -290,12 +291,12 @@ eShopLite
     }
     ```
 
-   > Remove the SQLite database connection string.
+   > Make sure there's no `ConnectionStrings` section any longer.
 
 1. Open the `src/eShopLite.ProductApi/Program.cs` file and modify it as follows:
 
     ```csharp
-    // 변경전
+    // Before
     builder.Services.AddDbContext<ProductDbContext>(options =>
     {
         var connectionString = builder.Configuration.GetConnectionString("ProductsContext") ?? throw new InvalidOperationException("Connection string 'ProductsContext' not found.");
@@ -304,15 +305,15 @@ eShopLite
     ```
 
     ```csharp
-    // 변경후
+    // After
     builder.AddNpgsqlDbContext<ProductDbContext>("productsdb");
     ```
 
    > Update to use the PostgreSQL database connection string.
    > 
-   > - The name `productsdb`는 `AppHost` corresponds to the database added in the `AppHost` project.
+   > - The name `productsdb`is the reference name that `AppHost` uses.
 
-### Running the .NET Aspire Orchestrator
+### Run the .NET Aspire Orchestrator
 
 1. Execute the following command to run the .NET Aspire orchestrator:
 
@@ -322,20 +323,20 @@ eShopLite
     dotnet watch run --project ./src/eShopLite.AppHost
     ```
 
-1. A web browser will automatically open, displaying the dashboard. The dashboard will show `pg`, `pg-pgadmin`, `productsdb`, `productapi`, `weatherapi`, `webapp` 리소스가 나타나면 성공입니다.
+1. A web browser will automatically open, displaying the dashboard. The dashboard will show `pg`, `pg-pgadmin`, `productsdb`, `productapi`, `weatherapi` and `webapp` resources.
 
     ![Aspire Dashboard](../../../docs/images/aspire-dashboard-2.png)
 
-   > 경우에 따라 아래와 같이 로그인 화면이 나타날 수 있습니다.
+   > You might be seeing the login screen.
    > 
    > ![Aspire Dashboard Login](../../../docs/images/aspire-dashboard-login.png)
    > 
-   > 화살표가 가리키는 링크를 클릭해서 안내에 따라 로그인하면 대시보드를 볼 수 있습니다.
+   > Click the link and follow the instructions so that you can access to the dashboard.
 
-1. 대시보드에 나타난 `pg-pgadmin`의 Endpoints 링크를 클릭하면 PostgreSQL 데이터베이스의 관리자 대시보드 화면을 볼 수 있습니다.
-1. 대시보드에 나타난 `productapi`와 `weatherapi` 각각의 Endpoints 링크를 클릭하면 OpenAPI 문서를 볼 수 있습니다.
-1. 대시보드에 나타난 `webapp`의 Endpoints 링크를 클릭하면 웹 앱을 볼 수 있습니다. `/products`와 `/weather` 페이지를 확인해 보세요.
-1. 터미널에서 `Ctrl`+`C`. Press Ctrl+C to stop the .NET Aspire orchestrator.
+1. Click the endpoint of `pg-pgadmin` to see the admin dashboard for the PostgreSQL database.
+1. Click the endpoint of both `productapi` and `weatherapi` to see respective OpenAPI document.
+1. Click the endpoint of `webapp` to see the web app. Navigate to both `/products` and `/weather` pages to see they are properly showing up.
+1. Type `Ctrl`+`C` in the terminal to to stop the .NET Aspire orchestrator.
 
 ---
 

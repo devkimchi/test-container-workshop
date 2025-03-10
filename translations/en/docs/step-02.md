@@ -142,15 +142,15 @@ eShopLite
         }
     ```
 
-   > - Add the following code directly below the `Setup()` 메서드는 테스트 클래스의 모든 테스트 메서드를 실행하기 전에 딱 한 번 실행합니다.
-   >   - `IContainer` 인스턴스를 생성합니다.
-   >     - `.WithImage("eshoplite-productapi-test:latest")`: 컨테이너를 생성할 때 사용할 이미지를 지정합니다.
-   >     - `.WithPortBinding(8080, true)`: 컨테이너의 8080 포트를 호스트의 임의의 포트에 바인딩합니다.
-   >     - `.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8080))`: 컨테이너가 8080 포트를 사용할 수 있을 때까지 대기합니다.
-   > - `Teardown()` 메서드는 테스트 클래스의 모든 테스트 메서드를 실행한 후에 딱 한 번 실행합니다.
-   >   - `IContainer` 인스턴스를 삭제합니다.
+   > - The `Setup()` method is run only once before running all the test in this class.
+   >   - It creates an `IContainer` instance.
+   >     - `.WithImage("eshoplite-productapi-test:latest")`: declares the container image.
+   >     - `.WithPortBinding(8080, true)`: binds the container's 8080 port to a random one on the host.
+   >     - `.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8080))`: waits until the container is available to use the 8080 port.
+   > - The `Teardown()` method is run only once after completing all the tests in this class.
+   >   - It deletes the `IContainer` instance.
 
-1. `SetUp()` method.
+1. Right below the `SetUp()` method, add the following `Init()` and `Cleanup()` methods.
 
     ```csharp
         [SetUp]
@@ -166,12 +166,12 @@ eShopLite
         }
     ```
 
-   > - Insert the following test code directly below the `Init()` 메서드는 테스트 클래스의 각 테스트 메서드를 실행하기 전에 실행합니다.
-   >   - 컨테이너를 시작합니다.
-   > - `Cleanup()` 메서드는 테스트 클래스의 각 테스트 메서드를 실행한 후에 실행합니다.
-   >   - 컨테이너를 중지합니다.
+   > - The `Init()` method runs before running each test method.
+   >   - Starts the container.
+   > - The `Cleanup()` method runs after completing each test method.
+   >   - Stops the container.
 
-1. `Init()` method.
+1. Right after the `Init()` method, add the following test codes.
 
     ```csharp
         [Test]
@@ -188,9 +188,9 @@ eShopLite
         }
     ```
 
-   > - Add the following code directly below the `Given_Endpoint_When_Invoked_Then_It_Should_Return_OK()`: `GET /api/products` 엔드포인트를 호출했을 때 200 OK 응답을 받는지 확인합니다.
+   > - `Given_Endpoint_When_Invoked_Then_It_Should_Return_OK()`: checks whether to receive the 200 (OK) response when calling the `GET /api/products` endpoint.
 
-1. `Given_Endpoint_When_Invoked_Then_It_Should_Return_OK()` method.
+1. Right after the `Given_Endpoint_When_Invoked_Then_It_Should_Return_OK()` method, add the following test codes.
 
     ```csharp
         [Test]
@@ -208,7 +208,7 @@ eShopLite
         }
     ```
 
-   > - Verify that the `Given_Endpoint_When_Invoked_Then_It_Should_Return_Collection()`: `GET /api/products` 엔드포인트를 호출했을 때 `Product` collection is returned.
+   > - `Given_Endpoint_When_Invoked_Then_It_Should_Return_Collection()`: checks whether to receive the list of `Product` when calling the `GET /api/products` endpoint.
 
 1. Save the test class and run the following command to execute the test.
 
@@ -273,13 +273,13 @@ eShopLite
 
 > **🚨🚨🚨 Challenge‼️ 🚨🚨🚨**
 > 
-> Create and write tests for the `eShopLite.ProductApi.Tests` 테스트 프로젝트와 마찬가지로 `eShopLite.WeatherApi.Tests` 프로젝트를 생성해 보세요.
+> Like the `eShopLite.ProductApi.Tests` projects, create a test project, `eShopLite.WeatherApi.Tests`.
 
-## 테스트 코드 작성: Weather API
+## Writing Test Codes: Weather API
 
-> **🚨🚨🚨 도전‼️ 🚨🚨🚨**
+> **🚨🚨🚨 Challenge‼️ 🚨🚨🚨**
 > 
-> 위의 `eShopLite.ProductApi.Tests` 테스트 프로젝트와 마찬가지로 `eShopLite.WeatherApi.Tests` projects mentioned above.
+> Like `eShopLite.ProductApi.Tests` projects, create a test project, `eShopLite.WeatherApi.Tests` and write tests.
 >
 > Use the following command to ensure the tests pass:
 > 
@@ -312,7 +312,7 @@ Automatically build container images during testing.
     docker rmi eshoplite-weatherapi-test:latest --force
     ```
 
-1. Add the `<Target>...</Target>` node to the `test/eShopLite.ProductApi.Tests/eShopLite.ProductApi.Tests.csproj` 파일을 열고 `</Project>` 바로 위에 다음 `` file.
+1. Add the `<Target>...</Target>` node just above `</Project>` to the `test/eShopLite.ProductApi.Tests/eShopLite.ProductApi.Tests.csproj` file.
 
     ```xml
       <Target Name="BuildContainerImage" BeforeTargets="PrepareForBuild">
@@ -322,7 +322,7 @@ Automatically build container images during testing.
     </Project>
     ```
 
-1. Add the `<Target>...</Target>` node to the `test/eShopLite.WeatherApi.Tests/eShopLite.WeatherApi.Tests.csproj` 파일을 열고 `</Project>` 바로 위에 다음 `` file.
+1. Add the `<Target>...</Target>` node just above `</Project>` to the `test/eShopLite.WeatherApi.Tests/eShopLite.WeatherApi.Tests.csproj` file.
 
     ```xml
       <Target Name="BuildContainerImage" BeforeTargets="PrepareForBuild">

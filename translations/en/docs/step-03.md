@@ -186,26 +186,26 @@ eShopLite
         }
     ```
 
-   > - `Setup()` 메서드는 테스트 클래스의 모든 테스트 메서드를 실행하기 전에 딱 한 번 실행합니다.
-   >   - `INetwork` 인스턴스를 생성합니다.
-   >     - `.WithName(Guid.NewGuid().ToString("D"))`: 임의의 이름을 가진 네트워크를 생성합니다.
-   >   - Product API 컨테이너를 위한 `ContainerBuilder` 인스턴스를 생성합니다.
-   >     - `.WithImage("eshoplite-productapi-test:latest")`: 컨테이너를 생성할 때 사용할 이미지를 지정합니다.
-   >     - `.WithName("productapi")`: 컨테이너의 이름을 지정합니다.
-   >     - `.WithNetwork(this._network)`: 컨테이너를 생성할 때 앞서 생성한 네트워크를 지정합니다.
-   >     - `.WithNetworkAliases("productapi")`: 컨테이너의 네트워크 별칭을 지정합니다.
-   >     - `.WithPortBinding(8080, true)`: 컨테이너의 8080 포트를 호스트의 임의의 포트에 바인딩합니다.
-   >     - `.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8080))`: 컨테이너가 8080 포트를 사용할 수 있을 때까지 대기합니다.
-   >   - Web App 컨테이너를 위한 `ContainerBuilder` 인스턴스를 생성합니다.
-   >     - `.WithImage("eshoplite-webapp-test:latest")`: 컨테이너를 생성할 때 사용할 이미지를 지정합니다.
-   >     - `.WithNetwork(this._network)`: 컨테이너를 생성할 때 앞서 생성한 네트워크를 지정합니다.
-   >     - `.WithNetworkAliases("webapp")`: 컨테이너의 네트워크 별칭을 지정합니다.
-   >     - `.WithPortBinding(8080, true)`: 컨테이너의 8080 포트를 호스트의 임의의 포트에 바인딩합니다.
-   >     - `.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8080))`: 컨테이너가 8080 포트를 사용할 수 있을 때까지 대기합니다.
-   > - `Teardown()` 메서드는 테스트 클래스의 모든 테스트 메서드를 실행한 후에 딱 한 번 실행합니다.
-   >   - `INetwork` 인스턴스를 삭제합니다.
+   > - The `Setup()` method runs only once before running all the test methods in this test class.
+   >   - It creates the `INetwork` instance.
+   >     - `.WithName(Guid.NewGuid().ToString("D"))`: generates a network with a random name.
+   >   - It creates the `ContainerBuilder` instance for the Product API container.
+   >     - `.WithImage("eshoplite-productapi-test:latest")`: declares the container image.
+   >     - `.WithName("productapi")`: declares the container name.
+   >     - `.WithNetwork(this._network)`: declares the network declared above.
+   >     - `.WithNetworkAliases("productapi")`: declares the alias of the container.
+   >     - `.WithPortBinding(8080, true)`: binds the container's port number to the random port number of the host.
+   >     - `.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8080))`: waits for the container is available to use the 8080 port.
+   >   - It creates the `ContainerBuilder` instance for the Web App container.
+   >     - `.WithImage("eshoplite-webapp-test:latest")`: declares the container image.
+   >     - `.WithNetwork(this._network)`: declares the network declared above.
+   >     - `.WithNetworkAliases("webapp")`: declares the alias of the container.
+   >     - `.WithPortBinding(8080, true)`: binds the container's port number to the random port number of the host.
+   >     - `.WithWaitStrategy(Wait.ForUnixContainer().UntilPortIsAvailable(8080))`: waits for the container is available to use the 8080 port.
+   > - The `Teardown()` method runs only once after completing all the test methods in this test class.
+   >   - Delete the `INetwork` instance.
 
-1. `SetUp()` Add the following code directly below the `SetUp()` method.
+1. Add the following code directly below the `SetUp()` method.
 
     ```csharp
         [SetUp]
@@ -232,20 +232,20 @@ eShopLite
         }
     ```
 
-   > - `Init()` 메서드는 테스트 클래스의 각 테스트 메서드를 실행하기 전에 실행합니다.
-   >   - Product API를 위한 `IContainer` 인스턴스를 생성합니다.
-   >   - Web App을 위한 `IContainer` 인스턴스를 생성합니다.
-   >   - 네트워크를 생성합니다.
-   >   - Product API 컨테이너를 시작합니다.
-   >   - Web App 컨테이너를 시작합니다.
-   > - `Cleanup()` 메서드는 테스트 클래스의 각 테스트 메서드를 실행한 후에 실행합니다.
-   >   - Web App 컨테이너를 중지합니다.
-   >   - Product API 컨테이너를 중지합니다.
-   >   - 네트워크를 삭제합니다.
-   >   - Web App 컨테이너를 삭제합니다.
-   >   - Product API 컨테이너를 삭제합니다.
+   > - The `Init()` method runs every time before running each test method in the test class.
+   >   - It creates the `IContainer` instance for the Product API.
+   >   - It creates the `IContainer` instance for the Web App.
+   >   - It creates the network instance.
+   >   - It starts the Product API container.
+   >   - It starts the Web App container.
+   > - The `Cleanup()` method runs every time after running each test method in the test class.
+   >   - It stops the Web App container.
+   >   - It stops the Product API container.
+   >   - It deletes the network.
+   >   - It deletes the Web App container.
+   >   - It deletes the Product API container.
 
-1. `Init()` Add the following test code directly below the `Init()` method.
+1. Add the following test code directly below the `Init()` method.
 
     ```csharp
         [Test]
@@ -266,9 +266,9 @@ eShopLite
         }
     ```
 
-   > - `Given_PageUrl_When_Invoked_Then_It_Should_Return_Table()`: `/products` 페이지를 방문했을 때, `Table` 엘리먼트를 제대로 렌더링하는지 확인합니다.
+   > - `Given_PageUrl_When_Invoked_Then_It_Should_Return_Table()`: tests whether to render the `Table` element when navigating to `/products`.
 
-1. `Given_PageUrl_When_Invoked_Then_It_Should_Return_Table()` Add the following code directly below the `Given_PageUrl_When_Invoked_Then_It_Should_Return_Table()` method.
+1. Add the following code directly below the `Given_PageUrl_When_Invoked_Then_It_Should_Return_Table()` method.
 
     ```csharp
         [Test]
@@ -289,7 +289,7 @@ eShopLite
         }
     ```
 
-   > - `Given_PageUrl_When_Invoked_Then_It_Should_Return_TableRows()`: `/products` 페이지를 방문했을 때, `Table` 엘리먼트가 데이터베이스에서 호출한 레코드를 제대로 렌더링하는지 확인합니다.
+   > - `Given_PageUrl_When_Invoked_Then_It_Should_Return_TableRows()`: tests whether to render the records fetched from the database when navigating to `/products`.
 
 1. `Given_PageUrl_When_Invoked_Then_It_Should_Return_TableRows()` Add the following code directly below the `Given_PageUrl_When_Invoked_Then_It_Should_Return_TableRows()` method.
 
@@ -314,7 +314,7 @@ eShopLite
         }
     ```
 
-   > - `Given_PageUrl_When_Invoked_Then_It_Should_Return_Date()`: `/products` 페이지를 방문했을 때, `Table` Verify that the Product ID value is rendered correctly for each record.
+   > - `Given_PageUrl_When_Invoked_Then_It_Should_Return_Date()`: tests whether to render the product ID value of each record when navigating to `/products`.
 
 1. Save the test class and execute the tests using the following command.
 

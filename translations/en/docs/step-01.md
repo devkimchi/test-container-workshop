@@ -85,9 +85,9 @@ eShopLite
    > $REPOSITORY_ROOT = git rev-parse --show-toplevel
    > ```
 
-1. A web browser will automatically open, displaying `https://localhost:7000` 또는 `http://localhost:5000` 주소로 접속합니다. 만약 자동으로 웹 브라우저가 열리지 않았다면 수동으로 주소를 입력합니다.
-1. 웹브라우저에서 `/weather` 또는 `/products` 경로로 접속하셔 각각 페이지가 정상적으로 보이는지 확인합니다.
-1. 각 터미널 창에서 `Ctrl`+`C`. Press Ctrl+C to stop the application.
+1. A web browser will automatically open, displaying `https://localhost:7000` or `http://localhost:5000`. If your web browser doesn't automatically open, enter the URL manually.
+1. Navigate to `/weather` or `/products` page and confirm both pages are properly rendering.
+1. On each terminal, press `Ctrl+C` to stop the application.
 1. Close all terminals except for one.
 
 ## Creating Container Images Using `Dockerfile`
@@ -155,12 +155,12 @@ Therefore, when creating independent container images for each application, thes
     ENTRYPOINT ["dotnet", "eShopLite.WebApp.dll"]
     ```
 
-   > **Note**: `Dockerfile.webapp`은 `eShopLite.WebApp` is the `Dockerfile` used to build the container image for the project.
+   > **Note**: `Dockerfile.webapp` is the `Dockerfile` used to build the container image for the `eShopLite.WebApp` project.
    > 
-   > - `Dockefile.webapp`의 위치는 `eShopLite.sln` 파일의 위치와 동일한 디렉토리에 있어야 합니다.
-   > - `eShopLite.WebApp` 프로젝트와 `eShopLite.DataEntities` 프로젝트를 모두 복사해서 의존성을 해결합니다.
+   > - `Dockefile.webapp` must be at the same location of the `eShopLite.sln` file.
+   > - Both `eShopLite.WebApp` and `eShopLite.DataEntities` projects must be copied to `Dockerfile` to resolve dependencies.
 
-1. 아래 명령어를 실행시켜 `eShopLite.WebApp` builds the container image for the project.
+1. Use the following command to build the container image for the `eShopLite.WebApp` project.
 
     ```bash
     docker build . -f ./Dockerfile.webapp -t eshoplite-webapp:latest
@@ -172,8 +172,8 @@ Therefore, when creating independent container images for each application, thes
     docker run -d -p 3000:8080 --name eshoplite-webapp eshoplite-webapp:latest
     ```
 
-1. Open a web browser and navigate to `http://localhost:3000` 주소로 접속하여 페이지가 정상적으로 보이는지 확인합니다.
-1. `/weather` 또는 `/products` to **check for errors on each page**.
+1. Open a web browser and navigate to `http://localhost:3000` and confirm whether the web app is up and running.
+1. Navigate to `/weather` or `/products` to **check for errors on each page**.
 
    > Errors should occur at this point.
 
@@ -235,12 +235,12 @@ Therefore, when creating independent container images for each application, thes
     ENTRYPOINT ["dotnet", "eShopLite.ProductApi.dll"]
     ```
 
-   > **Note**: `Dockerfile.productapi`은 `eShopLite.ProductApi` is the `Dockerfile` used to build the container image for the project.
+   > **Note**: `Dockerfile.productapi` is the `Dockerfile` used to build the container image for the `eShopLite.ProductApi` project.
    > 
-   > - `Dockefile.productapi`의 위치는 `eShopLite.sln` 파일의 위치와 동일한 디렉토리에 있어야 합니다.
-   > - `eShopLite.ProductApi` 프로젝트와 `eShopLite.ProductData`, `eShopLite.DataEntities` 프로젝트를 모두 복사해서 의존성을 해결합니다.
+   > - `Dockefile.productapi` must be at the same location as the `eShopLite.sln` file.
+   > - All `eShopLite.ProductApi`, `eShopLite.ProductData` and `eShopLite.DataEntities` projects must be copied to sort out dependencies.
 
-1. 아래 명령어를 실행시켜 `eShopLite.ProductApi` builds the container image for the project.
+1. Use the following command to build the container image for the `eShopLite.ProductApi` project.
 
     ```bash
     docker build . -f ./Dockerfile.productapi -t eshoplite-productapi:latest
@@ -252,8 +252,8 @@ Therefore, when creating independent container images for each application, thes
     docker run -d -p 3030:8080 --name eshoplite-productapi eshoplite-productapi:latest
     ```
 
-1. Open a web browser and navigate to `http://localhost:3030` 주소로 접속하여 **404 에러가 보이는지 확인합니다**.
-1. `/api/products` to verify that the data is displayed correctly.
+1. Open a web browser and navigate to `http://localhost:3030` and confirm whether to **see the 404 (not found) error**.
+1. Navigate to `/api/products` to verify that the data is displayed correctly.
 1. Run the following command to stop the container and delete the container and container image:
 
     ```bash
@@ -264,16 +264,16 @@ Therefore, when creating independent container images for each application, thes
 
 ### Creating `Dockerfile`: `eShopLite.WeatherApi`
 
-> **🚨🚨🚨 도전‼️ 🚨🚨🚨**
+> **🚨🚨🚨 Challenge‼️ 🚨🚨🚨**
 > 
-> 위의 `Dockerfile.webapp`과 `Dockerfile.productapi` 작성 방법을 참고하여 `eShopLite.WeatherApi` 프로젝트를 컨테이너 이미지로 빌드하는 `Dockerfile.weatherapi`를 작성해보세요.
+> By referring to `Dockerfile.webapp` and `Dockerfile.productapi`, write `Dockerfile.weatherapi` to build the container image for the `eShopLite.WeatherApi` project.
 >
-> - `Dockerfile.weatherapi`는 `eShopLite.WeatherApi` is the `Dockerfile` used to build the container image for the project.
-> - `Dockefile.weatherapi`의 위치는 `eShopLite.sln` 파일의 위치와 동일한 디렉토리에 있어야 합니다.
+> - `Dockerfile.weatherapi` is the `Dockerfile` used to build the container image for the `eShopLite.WeatherApi` project.
+> - `Dockefile.weatherapi` must be at the same location as the `eShopLite.sln` file.
 
-`Dockerfile.weatherapi`를 작성했다면 아래 순서대로 실행해보세요.
+Once complete writing up `Dockerfile.weatherapi`, follow the sequence below.
 
-1. 아래 명령어를 실행시켜 `eShopLite.WeatherApi` builds the container image for the project.
+1. Run the following command `eShopLite.WeatherApi` builds the container image for the project.
 
     ```bash
     docker build . -f ./Dockerfile.weatherapi -t eshoplite-weatherapi:latest
@@ -285,7 +285,7 @@ Therefore, when creating independent container images for each application, thes
     docker run -d -p 3031:8080 --name eshoplite-weatherapi eshoplite-weatherapi:latest
     ```
 
-1. Open a web browser and navigate to `http://localhost:3031` 주소로 접속하여 **404 에러가 보이는지 확인합니다**.
+1. Open a web browser and navigate to `http://localhost:3031` and confirm whether to **see the 404 (not found) error**.
 1. `/api/weatherforecast` to verify that the data is displayed correctly.
 1. Run the following command to stop the container and delete the container and container image:
 
@@ -316,8 +316,8 @@ Use the three `Dockerfile` files created earlier to orchestrate the containers.
     docker run -d -p 3031:8080 --name eshoplite-weatherapi eshoplite-weatherapi:latest
     ```
 
-1. Open a web browser and navigate to `http://localhost:3000` 주소로 접속하여 페이지가 정상적으로 보이는지 확인합니다.
-1. `/weather` 또는 `/products` to **check for errors on each page**.
+1. Open a web browser and navigate to `http://localhost:3000` and see whether the app is up and running.
+1. Navigate to `/weather` or `/products` to **check for errors on each page**.
 
    > Errors should still occur at this point.
 
@@ -337,7 +337,7 @@ Use the three `Dockerfile` files created earlier to orchestrate the containers.
 1. Open the `src/eShopLite.WebApp/Program.cs` file and modify the code as follows:
 
     ```csharp
-    // 변경 전
+    // Before
     builder.Services.AddHttpClient<ProductApiClient>(client =>
     {
         client.BaseAddress = new("http://localhost:5051");
@@ -350,7 +350,7 @@ Use the three `Dockerfile` files created earlier to orchestrate the containers.
     ```
 
     ```csharp
-    // 변경 후
+    // After
     builder.Services.AddHttpClient<ProductApiClient>(client =>
     {
         client.BaseAddress = new("http://productapi:8080");
@@ -382,8 +382,8 @@ Use the three `Dockerfile` files created earlier to orchestrate the containers.
     docker run -d -p 3031:8080 --network eshoplite --network-alias weatherapi --name eshoplite-weatherapi eshoplite-weatherapi:latest
     ```
 
-1. Open a web browser and navigate to `http://localhost:3000` 주소로 접속하여 페이지가 정상적으로 보이는지 확인합니다.
-1. `/weather` 또는 `/products` to **verify that each page displays correctly**.
+1. Open a web browser and navigate to `http://localhost:3000` and see whether the app is up and running.
+1. Navigate to `/weather` or `/products` to **verify that each page displays correctly**.
 1. Run the following command to delete the containers and network:
 
     ```bash
@@ -425,7 +425,7 @@ This time, orchestrate the containers using Docker Compose.
     New-Item -Type File -Path compose.yaml -Force
     ```
 
-   > - Open the `compose.yaml`의 위치는 `eShopLite.sln` 파일의 위치와 동일한 디렉토리에 있어야 합니다.
+   > - `compose.yaml` must be the same location as the `eShopLite.sln` file.
 
 1. `compose.yaml` file and enter the following content:
 
@@ -468,9 +468,9 @@ This time, orchestrate the containers using Docker Compose.
     docker compose up --build
     ```
 
-1. Open a web browser and navigate to `http://localhost:3000` 주소로 접속하여 페이지가 정상적으로 보이는지 확인합니다.
-1. `/weather` 또는 `/products` 경로로 접속하여 **각 페이지가 정상적으로 보이는지 확인합니다**.
-1. 터미널 창에서 `Ctrl`+`C` and press Ctrl+C to stop the application.
+1. Open a web browser and navigate to `http://localhost:3000` and see the app is up and running.
+1. Navigate to `/weather` or `/products` and confirm whether to **see each page displayed properly**.
+1. In the terminal, press `Ctrl+C` to stop the application.
 1. Run the following command to delete the containers, network, and container images at once:
 
     ```bash

@@ -95,7 +95,7 @@ eShopLite
 1. Open the `test/eShopLite.AppHost.Tests/eShopLite.AppHost.Tests.csproj` file and modify it as follows:
 
     ```xml
-    <!-- 변경전 -->
+    <!-- Before -->
       <ItemGroup>
         <Using Include="System.Net" />
         <Using Include="Microsoft.Extensions.DependencyInjection" />
@@ -106,7 +106,7 @@ eShopLite
     ```
 
     ```xml
-    <!-- 변경후 -->
+    <!-- After -->
       <ItemGroup>
         <Using Include="System.Net" />
         <Using Include="System.Threading.Tasks" />
@@ -118,7 +118,7 @@ eShopLite
       </ItemGroup>
     ```
 
-1. Add the `</Project>` 바로 위에 다음 `<Target>...</Target>` node to install Playwright after the project build.
+1. Add `<Target>...</Target>` node right above the `</Project>` tag to install Playwright after the project build.
 
     ```xml
       <Target Name="InstallPlaywright" AfterTargets="Build">
@@ -195,15 +195,16 @@ eShopLite
         }
     ```
 
-   > - Add the `Setup()` 메서드는 테스트 클래스의 모든 테스트 메서드를 실행하기 전에 딱 한 번 실행합니다.
-   >   - `DistributedApplication` 인스턴스를 생성합니다.
-   >   - `ResourceNotificationService` 인스턴스를 생성합니다.
-   >   - `DistributedApplication` 인스턴스를 시작합니다.
-   >   - `ResourceNotificationService` 인스턴스를 사용하여 각 컨테이너가 실행될 때까지 대기합니다.
-   > - `Teardown()` 메서드는 테스트 클래스의 모든 테스트 메서드를 실행한 후에 딱 한 번 실행합니다.
-   >   - `DistributedApplication` 인스턴스를 삭제합니다.
+   > - The `Setup()` method runs only once before running all the test methods in the test class.
+   >   - It creates the `DistributedApplication` instance.
+   >   - It creates the `ResourceNotificationService` instance.
+   >   - It starts the `DistributedApplication` instance.
+   >   - It lets the `ResourceNotificationService` instance wait for all the containers up and running.
+   > - The `Teardown()` method runs only once after running all the test methods in the test class.
+   >   - It disposes the `ResourceNotificationService` instance.
+   >   - It deletes the `DistributedApplication` instance.
 
-1. `SetUp()` method and input the following test code:
+1. Add the following test codes right below the `SetUp()` method:
 
     ```csharp
         [Test]
@@ -223,7 +224,7 @@ eShopLite
         }
     ```
 
-   > - Verify that the `Given_PageUrl_When_Invoked_Then_It_Should_Return_Heading1()`: 홈페이지를 방문했을 때, `H1` element renders correctly.
+   > - Verify that the `Given_PageUrl_When_Invoked_Then_It_Should_Return_Heading1()`: checks the `H1` element renders correctly at the home page.
 
 1. Save the test class and execute the tests using the following command:
 
