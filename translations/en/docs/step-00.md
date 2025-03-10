@@ -75,7 +75,7 @@ In this step, you will configure the development environment necessary for the w
     pwsh --version
     ```
 
-   The version should be `7.4.0` or higher. If it’s not, download the latest version from the [PowerShell installation page](https://learn.microsoft.com/powershell/scripting/install/installing-powershell).
+   The version should be `7.5.0` or higher. If it’s not, download the latest version from the [PowerShell installation page](https://learn.microsoft.com/powershell/scripting/install/installing-powershell).
 
 ## Verify git CLI Installation
 
@@ -123,7 +123,7 @@ In this step, you will configure the development environment necessary for the w
     gh --version
     ```
 
-   As of the time of writing this workshop documentation, the latest version is `2.62.0`. If your version is older, download the latest version from the [GitHub CLI installation page](https://cli.github.com/).
+   As of the time of writing this workshop documentation, the latest version is `2.68.1`. If your version is older, download the latest version from the [GitHub CLI installation page](https://cli.github.com/).
 
 ## Verify Docker Desktop Installation
 
@@ -147,7 +147,7 @@ In this step, you will configure the development environment necessary for the w
     docker --version
     ```
 
-   As of the time of writing this workshop documentation, the latest version is `27.3.1`. If your version is older, download the latest version from the [Docker Desktop installation page](https://docs.docker.com/get-started/introduction/get-docker-desktop/).
+   As of the time of writing this workshop documentation, the latest version is `28.0.1`. If your version is older, download the latest version from the [Docker Desktop installation page](https://docs.docker.com/get-started/introduction/get-docker-desktop/).
 
 ## Verify Visual Studio Code Installation
 
@@ -171,9 +171,9 @@ In this step, you will configure the development environment necessary for the w
     code --version
     ```
 
-   As of the time of writing this workshop documentation, the latest version is `1.95.3`입니다. 만약 버전이 낮다면 [Visual Studio Code 설치 페이지](https://code.visualstudio.com/)에서 최신 버전을 다운로드 받아 설치합니다.
+   As of the time of writing this workshop documentation, the latest version is `1.98.0`. If your version is older, download the latest version from the [Visual Studio Code installation page](https://code.visualstudio.com/).
 
-   > 만약 터미널에서 `code`. If you can’t execute the `code` command, refer to [this guide](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) for configuration.
+   > If you can’t execute the `code` command, refer to [this guide](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) for configuration.
 
 ## Launch Visual Studio Code
 
@@ -202,11 +202,11 @@ In this step, you will configure the development environment necessary for the w
     git remote -v
     ```
 
-   After running this command, you should see the following result. If you see `origin`에 `devkimchi`, you need to clone the repository again from your account.
+   After running this command, you should see the following result. If you see `devkimchi` at `origin`, you need to clone the repository again from your account.
 
     ```bash
-    origin  https://github.com/<자신의 GitHub ID>/test-container-workshop.git (fetch)
-    origin  https://github.com/<자신의 GitHub ID>/test-container-workshop.git (push)
+    origin  https://github.com/<Your GitHub ID>/test-container-workshop.git (fetch)
+    origin  https://github.com/<Your GitHub ID>/test-container-workshop.git (push)
     upstream        https://github.com/devkimchi/test-container-workshop.git (fetch)
     upstream        https://github.com/devkimchi/test-container-workshop.git (push)
     ```
