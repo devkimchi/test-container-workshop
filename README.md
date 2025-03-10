@@ -51,8 +51,9 @@
 
 | 언어   | 언어 코드 | 문서 링크                                  | 최종 수정일 |
 | ------ | --------- | ------------------------------------------ | ----------- |
-| 영어   | en        | [영문 번역](./translations/en/README.md)   | 2025-03-09  |
-| 태국어 | th        | [태국어 번역](./translations/th/README.md) | 2025-03-09  |
+| 한국어  | ko        | [한국어 문서](./README.md)                 | 2025-03-09  |
+| English | en        | [English Translation](./translations/en/README.md)       | 2025-03-09  |
+| ไทย     | th        | [การแปลภาษาไทย](./translations/th/README.md) | 2025-03-09  |
 
 ## 추가 참고 자료
 

@@ -1,21 +1,21 @@
-# STEP 04: การจัดการคอนเทนเนอร์ด้วย .NET Aspire
+# STEP 04: การจัดการ Container ด้วย .NET Aspire
 
-ในขั้นตอนนี้ เราจะใช้ [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview) ในการจัดการทุกแอปพลิเคชัน
+ในขั้นตอนนี้ คุณจะจัดการแอปทั้งหมดโดยใช้ [.NET Aspire](https://learn.microsoft.com/dotnet/aspire/get-started/aspire-overview)
 
-## สิ่งที่ต้องเตรียม
+## สิ่งที่ต้องเตรียมก่อนเริ่ม
 
 - ติดตั้ง [.NET SDK 9](https://dotnet.microsoft.com/download/dotnet/9.0)
 - ติดตั้ง [PowerShell 7](https://learn.microsoft.com/powershell/scripting/install/installing-powershell)
 - ติดตั้ง [Docker Desktop](https://docs.docker.com/get-started/introduction/get-docker-desktop/)
 - ติดตั้ง [Visual Studio Code](https://code.visualstudio.com/)
 
-ตรวจสอบการติดตั้งตามขั้นตอนในเอกสาร [STEP 00: ตั้งค่าพื้นฐานสำหรับการพัฒนา](./step-00.md)
+เพื่อยืนยันการติดตั้งของแต่ละสิ่งที่ต้องเตรียม ดูเอกสาร [STEP 00: Setting Up the Development Environment](./step-00.md)
 
 ## คัดลอกโปรเจกต์พื้นฐาน
 
-คุณสามารถใช้แอปพลิเคชันจากขั้นตอนก่อนหน้า หรือคัดลอกโปรเจกต์ใหม่จากจุดบันทึกโดยใช้คำสั่งด้านล่าง:
+คุณสามารถใช้แอปจากขั้นตอนก่อนหน้า หรือคัดลอกเวอร์ชันใหม่จากจุดบันทึกโดยใช้คำสั่งด้านล่าง หากต้องการคัดลอกเวอร์ชันใหม่ ให้ใช้คำสั่งต่อไปนี้:
 
-1. เปิดเทอร์มินัล แล้วรันคำสั่งด้านล่างเพื่อสร้างไดเรกทอรีสำหรับการฝึก และคัดลอกโปรเจกต์พื้นฐาน:
+1. เปิด terminal และรันคำสั่งต่อไปนี้ตามลำดับเพื่อสร้างไดเรกทอรีสำหรับฝึกฝนและคัดลอกโปรเจกต์พื้นฐาน:
 
     ```bash
     # Bash/Zsh
@@ -33,7 +33,7 @@
     New-Item -Type Directory -Path workshop -Force && Copy-Item -Path ./save-points/step-00/* -Destination ./workshop -Recurse -Force
     ```
 
-1. รันคำสั่งด้านล่างเพื่อบิลด์โปรเจกต์ทั้งหมด:
+1. สร้างโปรเจกต์ทั้งหมดโดยใช้คำสั่งต่อไปนี้:
 
     ```bash
     cd $REPOSITORY_ROOT/workshop
@@ -41,11 +41,11 @@
     dotnet restore && dotnet build
     ```
 
-## เพิ่มโปรเจกต์ .NET Aspire สำหรับการจัดการคอนเทนเนอร์
+## เพิ่มโปรเจกต์ .NET Aspire สำหรับการจัดการ
 
-แตกต่างจากขั้นตอนก่อนหน้า ในขั้นตอนนี้เราจะใช้ .NET Aspire ในการจัดการคอนเทนเนอร์
+แตกต่างจากการฝึกฝนครั้งก่อน ครั้งนี้คุณจะใช้ .NET Aspire ในการจัดการ container
 
-เมื่อเพิ่มโปรเจกต์ .NET Aspire แล้ว โครงสร้างของโซลูชันทั้งหมดจะเปลี่ยนไปตามภาพด้านล่าง:
+เมื่อคุณติดตั้งโปรเจกต์ .NET Aspire สำหรับการจัดการ โครงสร้างโดยรวมของ solution จะเปลี่ยนไปดังที่แสดงด้านล่าง:
 
 ```text
 eShopLite
@@ -69,14 +69,14 @@ eShopLite
 
 ### เพิ่มโปรเจกต์ .NET Aspire
 
-1. รันคำสั่งด้านล่างเพื่อเพิ่มโปรเจกต์ .NET Aspire สำหรับการจัดการคอนเทนเนอร์:
+1. รันคำสั่งต่อไปนี้เพื่อเพิ่มโปรเจกต์ .NET Aspire orchestrator:
 
     ```bash
     dotnet new aspire-apphost -n eShopLite.AppHost -o src/eShopLite.AppHost
     dotnet sln eShopLite.sln add ./src/eShopLite.AppHost
     ```
 
-1. รันคำสั่งด้านล่างเพื่อเพิ่มแอปพลิเคชันทั้งหมดเข้าไปในโปรเจกต์ .NET Aspire:
+1. ใช้คำสั่งต่อไปนี้เพื่อเพิ่มแอปทั้งหมดในโปรเจกต์ .NET Aspire orchestrator:
 
     ```bash
     dotnet add ./src/eShopLite.AppHost reference ./src/eShopLite.WebApp
@@ -84,14 +84,14 @@ eShopLite
     dotnet add ./src/eShopLite.AppHost reference ./src/eShopLite.WeatherApi
     ```
 
-1. รันคำสั่งด้านล่างเพื่อเพิ่มโปรเจกต์บริการพื้นฐานของ .NET Aspire:
+1. ใช้คำสั่งด้านล่างเพื่อเพิ่มโปรเจกต์ .NET Aspire base service:
 
     ```bash
     dotnet new aspire-servicedefaults -n eShopLite.ServiceDefaults -o src/eShopLite.ServiceDefaults
     dotnet sln eShopLite.sln add ./src/eShopLite.ServiceDefaults
     ```
 
-1. รันคำสั่งด้านล่างเพื่อเพิ่มโปรเจกต์บริการพื้นฐานให้กับแต่ละแอปพลิเคชัน:
+1. รันคำสั่งต่อไปนี้เพื่อเพิ่มโปรเจกต์ .NET Aspire base service ในแต่ละแอป:
 
     ```bash
     dotnet add ./src/eShopLite.WebApp reference ./src/eShopLite.ServiceDefaults
@@ -99,22 +99,20 @@ eShopLite
     dotnet add ./src/eShopLite.WeatherApi reference ./src/eShopLite.ServiceDefaults
     ```
 
-### เพิ่มโค้ดใน `eShopLite.WebApp` 프로젝트 수정
+### แก้ไข `eShopLite.WebApp` Project
 
-1. `src/eShopLite.WebApp/Program.cs` 파일을 열고 `var builder = WebApplication.CreateBuilder(args);`
-
-เพิ่มโค้ดด้านล่างทันทีหลังจากบรรทัดนี้:
+1. Open `src/eShopLite.WebApp/Program.cs`, find `var builder = WebApplication.CreateBuilder(args);` และเพิ่มเนื้อหาต่อไปนี้ทันทีด้านล่าง:
 
     ```csharp
     builder.AddServiceDefaults();
     ```
 
-   > ตั้งค่าให้ใช้บริการที่มาจากโปรเจกต์บริการพื้นฐาน
+   > การตั้งค่านี้ช่วยให้สามารถใช้บริการเริ่มต้นที่จัดเตรียมโดย .NET Aspire
 
-1. แก้ไขโค้ดด้านล่าง:
+2. อัปเดตโค้ดดังนี้:
 
     ```csharp
-    // 변경전
+    // Before
     builder.Services.AddHttpClient<ProductApiClient>(client =>
     {
         client.BaseAddress = new("http://localhost:5051");
@@ -127,7 +125,7 @@ eShopLite
     ```
 
     ```csharp
-    // 변경후
+    // After
     builder.Services.AddHttpClient<ProductApiClient>(client =>
     {
         client.BaseAddress = new("https+http://productapi");
@@ -139,52 +137,48 @@ eShopLite
     });
     ```
 
-   > ปรับโค้ดเพื่อใช้การค้นหาบริการจากตัวจัดการคอนเทนเนอร์
+   > แก้ไขเพื่อใช้การค้นหาบริการที่จัดเตรียมโดย .NET Aspire
 
-1. เพิ่มโค้ดด้านล่างทันทีก่อน `app.Run();`:
+3. เพิ่มเนื้อหาต่อไปนี้ก่อน `app.Run();`:
 
     ```csharp
     app.MapDefaultEndpoints();
     ```
 
-   > ตั้งค่าให้ใช้ endpoint สำหรับการตรวจสอบสถานะจากโปรเจกต์บริการพื้นฐาน
+   > การตั้งค่านี้ช่วยให้สามารถใช้ endpoint ตรวจสอบสถานะที่จัดเตรียมโดย .NET Aspire
 
-### เพิ่มโค้ดใน `eShopLite.ProductApi` 프로젝트 수정
+### แก้ไข `eShopLite.ProductApi` Project
 
-1. `src/eShopLite.ProductApi/Program.cs` 파일을 열고 `var builder = WebApplication.CreateBuilder(args);`
-
-เพิ่มโค้ดด้านล่างทันทีหลังจากบรรทัดนี้:
+1. Open `src/eShopLite.ProductApi/Program.cs`, find `var builder = WebApplication.CreateBuilder(args);` และเพิ่มเนื้อหาต่อไปนี้ทันทีด้านล่าง:
 
     ```csharp
     builder.AddServiceDefaults();
     ```
 
-1. เพิ่มโค้ดด้านล่างทันทีก่อน `app.Run();`:
+1. เพิ่มบรรทัดต่อไปนี้ก่อน `app.Run();`:
 
     ```csharp
     app.MapDefaultEndpoints();
     ```
 
-### เพิ่มโค้ดใน `eShopLite.WeatherApi` 프로젝트 수정
+### แก้ไข `eShopLite.WeatherApi` Project
 
 > **🚨🚨🚨 도전‼️ 🚨🚨🚨**
 > 
-> 위의 `eShopLite.ProductApi` 프로젝트 수정과 마찬가지로 `eShopLite.WeatherApi` 프로젝트를 수정해 보세요.
+> Like modifying the `eShopLite.ProductApi` project, modify the `eShopLite.WeatherApi` project.
 
-### `eShopLite.AppHost` 프로젝트 수정
+### Modify `eShopLite.AppHost` Project
 
-1. `src/eShopLite.AppHost/Program.cs` 파일을 열고 `var builder = DistributedApplication.CreateBuilder(args);`
-
-เพิ่มโค้ดด้านล่างทันทีหลังจากบรรทัดนี้:
+1. Open `src/eShopLite.AppHost/Program.cs`, find `var builder = DistributedApplication.CreateBuilder(args);` และเพิ่มบรรทัดต่อไปนี้ทันทีด้านล่าง:
 
     ```csharp
     var productapi = builder.AddProject<Projects.eShopLite_ProductApi>("productapi");
     var weatherapi = builder.AddProject<Projects.eShopLite_WeatherApi>("weatherapi");
     ```
 
-   > เพิ่มโปรเจกต์ `AppHost`에 `ProductApi`와 `WeatherApi` ในตัวจัดการคอนเทนเนอร์
+   > เพิ่มทั้ง `ProductApi` and `WeatherApi` to the orchestrator project, `AppHost`
 
-1. เพิ่มโค้ดด้านล่างในบรรทัดถัดไป:
+1. เพิ่มเนื้อหาต่อไปนี้ในบรรทัดถัดไป:
 
     ```csharp
     builder.AddProject<Projects.eShopLite_WebApp>("webapp")
@@ -195,14 +189,17 @@ eShopLite
            .WaitFor(weatherapi);
     ```
 
-   > ตั้งค่าให้รอจนกว่าโปรเจกต์ `AppHost`에 `WebApp` 프로젝트를 추가합니다.
+   > ตั้งค่า `WebApp` project in the orchestrator, `AppHost`
    > 
-   > - `ProductApi` 프로젝트를 참조하도록 설정합니다.
-   > - `WeatherApi` จะพร้อมก่อนดำเนินการต่อ
+   > - `.WithExternalHttpEndpoints()`: exposes for the public access.
+   > - `.WithReference(productapi)`: lets `WebApp` discover `ProductApi`.
+   > - `.WithReference(weatherapi)`: lets `WebApp` discover `WeatherApi`.
+   > - `.WaitFor(productapi)`: lets `WebApp` wait for `ProductApi` being up and running.
+   > - `.WaitFor(weatherapi)`: lets `WebApp` wait for `WeatherApi` ให้พร้อมใช้งาน
 
-### รัน .NET Aspire สำหรับการจัดการคอนเทนเนอร์
+### รัน .NET Aspire Orchestrator
 
-1. รันคำสั่งด้านล่างเพื่อเริ่มต้น .NET Aspire:
+1. ใช้คำสั่งต่อไปนี้เพื่อรัน .NET Aspire orchestrator:
 
     ```bash
     cd $REPOSITORY_ROOT/workshop
@@ -210,27 +207,27 @@ eShopLite
     dotnet watch run --project ./src/eShopLite.AppHost
     ```
 
-1. เว็บเบราว์เซอร์จะเปิดขึ้นโดยอัตโนมัติและแสดงแดชบอร์ด ซึ่งคุณจะเห็น `productapi`, `weatherapi`, `webapp` 리소스가 나타나면 성공입니다.
+1. เบราว์เซอร์จะเปิดขึ้นโดยอัตโนมัติและแสดงแดชบอร์ด ซึ่งจะแสดง `productapi`, `weatherapi` and `webapp` resources.
 
-    ![Aspire Dashboard](../../../docs/images/aspire-dashboard-1.png)
+    ![Aspire Dashboard](../../../../../docs/images/aspire-dashboard-1.png)
 
-   > 경우에 따라 아래와 같이 로그인 화면이 나타날 수 있습니다.
+   > You might be seeing this login screen.
    > 
-   > ![Aspire Dashboard Login](../../../docs/images/aspire-dashboard-login.png)
+   > ![Aspire Dashboard Login](../../../../../docs/images/aspire-dashboard-login.png)
    > 
-   > 화살표가 가리키는 링크를 클릭해서 안내에 따라 로그인하면 대시보드를 볼 수 있습니다.
+   > Click the link and follow the instructions to get into the dashboard.
 
-1. 대시보드에 나타난 `productapi`와 `weatherapi` 각각의 Endpoints 링크를 클릭하면 OpenAPI 문서를 볼 수 있습니다.
-1. 대시보드에 나타난 `webapp`의 Endpoints 링크를 클릭하면 웹 앱을 볼 수 있습니다. `/products`와 `/weather` 페이지를 확인해 보세요.
-1. 터미널에서 `Ctrl`+`C`를 눌러 .NET Aspire 오케스트레이터를 종료합니다.
+1. Click each endpoint of `productapi` and `weatherapi` to see their respective OpenAPI document.
+1. Click the enpoint of `webapp` to see the web application. Navigate to both `/products` and `/weather` pages and see whether they are properly up.
+1. Type `Ctrl`+`C` in the terminal and stop the .NET Aspire orchestrator.
 
-## .NET Aspire 오케스트레이터에서 데이터베이스 교체
+## Replace Database through .NET Aspire Orchestrator
 
-지금까지 사용하던 데이터베이스를 SQLite에서 PostgreSQL로 교체해 보겠습니다.
+Let's change the database from SQLite to PostgreSQL.
 
-### `eShopLite.AppHost` 프로젝트 수정
+### Modify `eShopLite.AppHost` Project
 
-1. 아래 명령어를 실행시켜 `eShopLite.AppHost` พร้อมเพิ่ม PostgreSQL package ในโปรเจกต์นี้:
+1. Run the following command to add the PostgreSQL package to the `eShopLite.AppHost` project
 
     ```bash
     cd $REPOSITORY_ROOT/workshop
@@ -238,7 +235,7 @@ eShopLite
     dotnet add ./src/eShopLite.AppHost package Aspire.Hosting.PostgreSQL
     ```
 
-1. เพิ่มโค้ดใน `src/eShopLite.AppHost/Program.cs` 파일을 열고 `var builder = DistributedApplication.CreateBuilder(args);` ทันทีหลังจากบรรทัดนี้:
+1. เปิด `src/eShopLite.AppHost/Program.cs`, find `var builder = DistributedApplication.CreateBuilder(args);` และเพิ่มเนื้อหาต่อไปนี้ทันทีด้านล่าง:
 
     ```csharp
     var productsdb = builder.AddPostgres("pg")
@@ -248,28 +245,30 @@ eShopLite
 
    > เพิ่มฐานข้อมูล PostgreSQL
    > 
-   > - เพิ่มฐานข้อมูลชื่อ `productsdb`: `productsdb`
+   > - `.AddPostgres("pg")`: adds a container for PostgreSQL database.
+   > - `.WithPgAdmin()`: adds a container for PGAdmin dashboard.
+   > - `.AddDatabase("productsdb")`: adds a new database called `productsdb`
 
-1. แก้ไขโค้ดด้านล่าง:
+1. แก้ไขเนื้อหาต่อไปนี้:
 
     ```csharp
-    // 변경전
+    // Before
     var productapi = builder.AddProject<Projects.eShopLite_ProductApi>("productapi");
     ```
 
     ```csharp
-    // 변경후
+    // After
     var productapi = builder.AddProject<Projects.eShopLite_ProductApi>("productapi")
                             .WithReference(productsdb);
     ```
 
-   > เพิ่ม PostgreSQL package ในโปรเจกต์ `ProductApi` 프로젝트에 PostgreSQL 데이터베이스를 추가합니다.
+   > เพิ่มฐานข้อมูล PostgreSQL ในโปรเจกต์ `ProductApi` project.
    > 
-   > - `.WithReference(productsdb)`: `ProductApi` 프로젝트가 PostgreSQL 데이터베이스를 참조하도록 설정합니다.
+   > - `.WithReference(productsdb)`: let `ProductApi` discover the PostgreSQL database, `productsdb`.
 
-### `eShopLite.ProductApi` 프로젝트 수정
+### Modify `eShopLite.ProductApi` Project
 
-1. 아래 명령어를 실행시켜 `eShopLite.ProductApi`
+1. Run the following command to add a PostgreSQL database packaget to the `eShopLite.ProductApi`
 
     ```bash
     cd $REPOSITORY_ROOT/workshop
@@ -277,7 +276,7 @@ eShopLite
     dotnet add ./src/eShopLite.ProductApi package Aspire.Npgsql.EntityFrameworkCore.PostgreSQL
     ```
 
-1. ไฟล์ `src/eShopLite.ProductApi/appsettings.json` 파일을 열고 `ConnectionStrings` 섹션을 완전히 지웁니다. 이후 `appsettings.json` จะมีเนื้อหาเป็นดังนี้:
+1. เปิดไฟล์ `src/eShopLite.ProductApi/appsettings.json`, remove the `ConnectionStrings` section completely. The `appsettings.json` และแก้ไขให้เป็นดังนี้:
 
     ```json
     {
@@ -292,12 +291,12 @@ eShopLite
     }
     ```
 
-   > ลบ connection string ของ SQLite ออก
+   > ตรวจสอบให้แน่ใจว่าไม่มี `ConnectionStrings` section any longer.
 
-1. เปิดไฟล์ `src/eShopLite.ProductApi/Program.cs` และแก้ไขดังนี้:
+1. Open the `src/eShopLite.ProductApi/Program.cs` และแก้ไขไฟล์ดังนี้:
 
     ```csharp
-    // 변경전
+    // Before
     builder.Services.AddDbContext<ProductDbContext>(options =>
     {
         var connectionString = builder.Configuration.GetConnectionString("ProductsContext") ?? throw new InvalidOperationException("Connection string 'ProductsContext' not found.");
@@ -306,17 +305,17 @@ eShopLite
     ```
 
     ```csharp
-    // 변경후
+    // After
     builder.AddNpgsqlDbContext<ProductDbContext>("productsdb");
     ```
 
-   > เปลี่ยนไปใช้ connection string ของ PostgreSQL
+   > อัปเดตเพื่อใช้ connection string ของฐานข้อมูล PostgreSQL
    > 
-   > - `productsdb`는 `AppHost` เป็นชื่อที่ใช้เมื่อเพิ่มฐานข้อมูลในโปรเจกต์ AppHost
+   > - ชื่อ `productsdb`is the reference name that `AppHost` ใช้งาน
 
-### รัน .NET Aspire สำหรับการจัดการคอนเทนเนอร์
+### รัน .NET Aspire Orchestrator
 
-1. รันคำสั่งด้านล่างเพื่อเริ่มต้น .NET Aspire:
+1. ใช้คำสั่งต่อไปนี้เพื่อรัน .NET Aspire orchestrator:
 
     ```bash
     cd $REPOSITORY_ROOT/workshop
@@ -324,24 +323,24 @@ eShopLite
     dotnet watch run --project ./src/eShopLite.AppHost
     ```
 
-1. เว็บเบราว์เซอร์จะเปิดขึ้นโดยอัตโนมัติและแสดงแดชบอร์ด ซึ่งคุณจะเห็น `pg`, `pg-pgadmin`, `productsdb`, `productapi`, `weatherapi`, `webapp` 리소스가 나타나면 성공입니다.
+1. เบราว์เซอร์จะเปิดขึ้นโดยอัตโนมัติและแสดงแดชบอร์ด ซึ่งจะแสดง `pg`, `pg-pgadmin`, `productsdb`, `productapi`, `weatherapi` and `webapp` resources.
 
-    ![Aspire Dashboard](../../../docs/images/aspire-dashboard-2.png)
+    ![Aspire Dashboard](../../../../../docs/images/aspire-dashboard-2.png)
 
-   > 경우에 따라 아래와 같이 로그인 화면이 나타날 수 있습니다.
+   > You might be seeing the login screen.
    > 
-   > ![Aspire Dashboard Login](../../../docs/images/aspire-dashboard-login.png)
+   > ![Aspire Dashboard Login](../../../../../docs/images/aspire-dashboard-login.png)
    > 
-   > 화살표가 가리키는 링크를 클릭해서 안내에 따라 로그인하면 대시보드를 볼 수 있습니다.
+   > Click the link and follow the instructions so that you can access to the dashboard.
 
-1. 대시보드에 나타난 `pg-pgadmin`의 Endpoints 링크를 클릭하면 PostgreSQL 데이터베이스의 관리자 대시보드 화면을 볼 수 있습니다.
-1. 대시보드에 나타난 `productapi`와 `weatherapi` 각각의 Endpoints 링크를 클릭하면 OpenAPI 문서를 볼 수 있습니다.
-1. 대시보드에 나타난 `webapp`의 Endpoints 링크를 클릭하면 웹 앱을 볼 수 있습니다. `/products`와 `/weather` 페이지를 확인해 보세요.
-1. 터미널에서 `Ctrl`+`C` กดปุ่มเพื่อหยุด .NET Aspire
+1. Click the endpoint of `pg-pgadmin` to see the admin dashboard for the PostgreSQL database.
+1. Click the endpoint of both `productapi` and `weatherapi` to see respective OpenAPI document.
+1. Click the endpoint of `webapp` to see the web app. Navigate to both `/products` and `/weather` pages to see they are properly showing up.
+1. Type `Ctrl`+`C` ใน terminal เพื่อหยุด .NET Aspire orchestrator
 
 ---
 
-ยินดีด้วย! คุณได้ทำ **การจัดการคอนเทนเนอร์ด้วย .NET Aspire** เสร็จสิ้นแล้ว ตอนนี้ไปที่ขั้นตอนถัดไป [STEP 05: ทดสอบแบบรวมด้วย .NET Aspire](./step-05.md)
+ยินดีด้วย! คุณได้ทำการฝึกฝน **Container Orchestration with .NET Aspire** เสร็จสมบูรณ์แล้ว ดำเนินการต่อในขั้นตอนถัดไป: [STEP 05: Integration Testing with .NET Aspire](./step-05.md)
 
 **ข้อจำกัดความรับผิดชอบ**:  
-เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษาด้วย AI อัตโนมัติ แม้ว่าเราจะพยายามให้การแปลมีความถูกต้อง แต่โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาต้นทางควรถือเป็นแหล่งข้อมูลที่ถูกต้องที่สุด สำหรับข้อมูลสำคัญ ขอแนะนำให้ใช้บริการแปลภาษาจากผู้เชี่ยวชาญที่เป็นมนุษย์ เราจะไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความที่ผิดพลาดซึ่งเกิดจากการใช้การแปลนี้
+เอกสารนี้ได้รับการแปลโดยใช้บริการแปลภาษา AI ที่ใช้เครื่องจักร แม้ว่าเราจะพยายามอย่างเต็มที่เพื่อความถูกต้อง โปรดทราบว่าการแปลอัตโนมัติอาจมีข้อผิดพลาดหรือความไม่ถูกต้อง เอกสารต้นฉบับในภาษาดั้งเดิมควรถือเป็นแหล่งข้อมูลที่มีความถูกต้องมากที่สุด สำหรับข้อมูลสำคัญ ขอแนะนำให้ใช้บริการแปลภาษาจากผู้เชี่ยวชาญ เราจะไม่รับผิดชอบต่อความเข้าใจผิดหรือการตีความที่ผิดพลาดซึ่งเกิดจากการใช้การแปลนี้

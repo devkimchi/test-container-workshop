@@ -51,8 +51,9 @@ This workshop is also available in the following languages!
 
 | Language | Code      | Document Link                              | Last Updated |
 |----------|-----------|--------------------------------------------|--------------|
-| English  | en        | [English Translation](./README.md) | 2025-03-09   |
-| Thai     | th        | [Thai Translation](../th/README.md)     | 2025-03-09   |
+| 한국어  | ko        | [한국어 문서](../../README.md)                 | 2025-03-09  |
+| English | en        | [English Translation](./README.md)       | 2025-03-09  |
+| ไทย     | th        | [การแปลภาษาไทย](../th/README.md) | 2025-03-09  |
 
 ## Additional Reference Materials
 
